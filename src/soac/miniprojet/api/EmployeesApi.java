@@ -6,16 +6,14 @@ import soac.miniprojet.model.dao.daos.EmployeesDAO;
 import java.util.LinkedList;
 
 public class EmployeesApi {
-    private final EmployeesDAO dao;
+    EmployeesDAO dao;
 
     public EmployeesApi() {
         this.dao = new EmployeesDAO();
     }
 
     public LinkedList<Employees> getEmployees() {
-
-        return   new EmployeesDAO().getAll();
-
+        return dao.getAll();
     }
 
     public boolean login(String username, String password) {
