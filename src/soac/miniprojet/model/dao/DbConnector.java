@@ -21,7 +21,9 @@ public class DbConnector {
             user = "root",
             pass = "";*/
 
-    private static final String conn = "jdbc:mysql://" + host + ":" + port + "/" + db_name + "?autoReconnect=true&useUnicode=yes";
+    private static final String conn = "jdbc:mysql://" + host + ":" + port + "/" + db_name + "?autoReconnect=true&useUnicode=yes&useUnicode=true" +
+            "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&" +
+            "serverTimezone=UTC";
     private static Connection connexion;
 
     DbConnector() {
