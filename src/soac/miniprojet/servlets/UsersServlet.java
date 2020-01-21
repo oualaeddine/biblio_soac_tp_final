@@ -37,6 +37,10 @@ public class UsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") != null) {
+			Employees user = (Employees)session.getAttribute("user");
+
+			request.setAttribute("user",user.getNom()+" "+user.getPrenom());
+			request.setAttribute("role",user.getRole());
 
 			LinkedList<Employees> users = new EmployeesApi().getAll();
 			request.setAttribute("users",users);

@@ -2,6 +2,7 @@ package soac.miniprojet.servlets;
 
 
 import soac.miniprojet.api.StudentsApi;
+import soac.miniprojet.model.beans.Employees;
 import soac.miniprojet.model.beans.Students;
 import soac.miniprojet.model.beans.StudentsBiblioInsc;
 
@@ -36,6 +37,11 @@ public class ReinscriptionsServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
+            Employees user = (Employees)session.getAttribute("user");
+
+            request.setAttribute("user",user.getNom()+" "+user.getPrenom());
+            request.setAttribute("role",user.getRole());
+
             LinkedList<Students> students = new StudentsApi().getAll();
             request.setAttribute("students", students);
             this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/reinscription.jsp").forward(request, response);

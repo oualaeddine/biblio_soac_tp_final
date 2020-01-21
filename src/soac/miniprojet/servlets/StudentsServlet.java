@@ -2,6 +2,7 @@ package soac.miniprojet.servlets;
 
 
 import soac.miniprojet.api.StudentsApi;
+import soac.miniprojet.model.beans.Employees;
 import soac.miniprojet.model.beans.Students;
 
 import javax.servlet.ServletException;
@@ -37,6 +38,10 @@ public class StudentsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
+            Employees user = (Employees)session.getAttribute("user");
+
+            request.setAttribute("user",user.getNom()+" "+user.getPrenom());
+            request.setAttribute("role",user.getRole());
 
             LinkedList<Students> students = new StudentsApi().getAll();
             request.setAttribute("students", students);

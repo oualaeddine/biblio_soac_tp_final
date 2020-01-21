@@ -55,10 +55,10 @@
                                 <a class="dropdown-toggle nav-link"
                                                                        data-toggle="dropdown" aria-expanded="false"
                                                                        href="#"><span
-                                    class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie Luna</span><img
+                                    class="d-none d-lg-inline mr-2 text-gray-600 small"><%= request.getAttribute("user")%></span><img
                                     class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
                                 <div>
-                                    <a class="dropdown-item" role="presentation" href="#"><i
+                                    <a class="dropdown-item" role="presentation" href="/logout"><i
                                             class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
                                 </div>
                             </div>

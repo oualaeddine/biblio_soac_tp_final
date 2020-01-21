@@ -2,6 +2,7 @@ package soac.miniprojet.servlets;
 
 
 import soac.miniprojet.api.StudentsBiblioInscAPI;
+import soac.miniprojet.model.beans.Employees;
 import soac.miniprojet.model.beans.InscriptionPeriod;
 import soac.miniprojet.utils.ScholarYearHelper;
 
@@ -36,6 +37,10 @@ public class DashboardServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("user") != null) {
+           Employees user = (Employees)session.getAttribute("user");
+
+            request.setAttribute("user",user.getNom()+" "+user.getPrenom());
+            request.setAttribute("role",user.getRole());
 
             this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Dashboard.jsp").forward(request, response);
         } else response.sendRedirect(request.getContextPath() + "/login");

@@ -2,6 +2,7 @@ package soac.miniprojet.servlets;
 
 
 import soac.miniprojet.api.StudentsApi;
+import soac.miniprojet.model.beans.Employees;
 import soac.miniprojet.model.beans.Students;
 
 import javax.servlet.ServletException;
@@ -33,8 +34,12 @@ public class InscriptionsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") != null) {
+            Employees user = (Employees)session.getAttribute("user");
 
-			this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Inscriptions.jsp").forward(request, response);
+            request.setAttribute("user",user.getNom()+" "+user.getPrenom());
+            request.setAttribute("role",user.getRole());
+
+            this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Inscriptions.jsp").forward(request, response);
 		} else response.sendRedirect(request.getContextPath() + "/login");
 
     }
