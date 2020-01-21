@@ -28,12 +28,12 @@
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
                 <%if(role=="RESP_BIBLIO"){%>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
                 <%}%>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/students"><i class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/inscription"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/reinscription"><i class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/students"><i class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/inscription"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/reinscription"><i class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
             </ul>
             <div class="text-center d-none d-md-inline">
                 <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
