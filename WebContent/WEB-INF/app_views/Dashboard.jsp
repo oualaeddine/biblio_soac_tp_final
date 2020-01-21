@@ -2,7 +2,7 @@
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
-<%String role="user";%>
+<%String role=(String)request.getAttribute("role");%>
 
 <head>
     <meta charset="utf-8">
@@ -24,7 +24,7 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                <%if(role=="admin"){%>
+                <%if(role=="RESP_BIBLIO"){%>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="/users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
                 <%}%>
