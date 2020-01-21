@@ -66,9 +66,14 @@ public class StudentsDAO extends DAO implements DAOInterface {
 	public boolean add(Object object) {
 		Students student = (Students) object;
 		try {
-			statement.execute("INSERT INTO Students (`nom`,`prenom`,`role` ) VALUES(" +
+			statement.execute("INSERT INTO Students (nom, prenom, date_naiss, sexe, num_bac, date_insc) " +
+					"VALUES(" +
 					"'" + student.getNom() + "'," +
 					"'" + student.getPrenom() + "'," +
+					"'" + student.getDateNaiss() + "'," +
+					"'" + student.getSexe() + "'," +
+					"'" + student.getNumBac() + "'," +
+					"now()" +
 					");");
 			return true;
 		} catch (SQLException e) {
@@ -76,7 +81,6 @@ public class StudentsDAO extends DAO implements DAOInterface {
 		}
 		return false;
 	}
-
 	@Override
 	public LinkedList<Students> getAll() {
 		LinkedList<Students> list = new LinkedList<>();

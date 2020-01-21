@@ -17,7 +17,6 @@ import java.util.Date;
  * Servlet implementation class DashboardServlet
  */
 @WebServlet("/dashboard")
-
 public class DashboardServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private StudentsBiblioInscAPI periodApi;

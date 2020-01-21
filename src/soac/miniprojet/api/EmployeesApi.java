@@ -8,7 +8,6 @@ import java.util.LinkedList;
 
 public class EmployeesApi {
 
-
     EmployeesDAO dao;
 
     public EmployeesApi() {
@@ -26,7 +25,6 @@ public class EmployeesApi {
     public Object getById(int id) {
         return dao.getById(id);
     }
-
 
     public boolean deleteById(int id) {
         return dao.deleteById(id);
