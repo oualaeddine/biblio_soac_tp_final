@@ -38,13 +38,6 @@ public class UsersServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("user") != null) {
 
-
-			if (request.getAttribute("error") == null)
-				request.setAttribute("error", false);
-
-			if (!(boolean) request.getAttribute("error"))
-				request.setAttribute("error", false);
-
 			LinkedList<Employees> users = new EmployeesApi().getAll();
 			request.setAttribute("users",users);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Users.jsp").forward(request, response);
