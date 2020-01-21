@@ -1,14 +1,15 @@
-c<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
-<%String role=(String)request.getAttribute("role");%>
+<%String role = (String) request.getAttribute("role");%>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Biblio - Instructions</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
@@ -23,33 +24,45 @@ c<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                <%if(role=="RESP_BIBLIO"){%>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
+                <%if (role.equals("RESP_BIBLIO")) {%>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/dashboard"><i
+                        class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/users"><i
+                        class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
                 <%}%>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/students"><i class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/inscription"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/reinscription"><i class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/students"><i
+                        class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/inscription"><i
+                        class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/reinscription"><i
+                        class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="<%=request.getContextPath() %>/logout">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></li>
             </ul>
-            <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            <div class="text-center d-none d-md-inline">
+                <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+            </div>
         </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                <div class="container-fluid">
+                    <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i
+                            class="fas fa-bars"></i></button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
                         <li class="nav-item dropdown no-arrow" role="presentation">
                             <div class="nav-item dropdown no-arrow">
                                 <a class="dropdown-toggle nav-link"
                                    data-toggle="dropdown" aria-expanded="false"
                                    href="#"><span
-                                        class="d-none d-lg-inline mr-2 text-gray-600 small"><%= request.getAttribute("user")%></span><img
-                                        class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
-                                <div>
-                                    <a class="dropdown-item" role="presentation" href="/logout"><i
-                                            class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
-                                </div>
+                                        class="d-none d-lg-inline mr-2 text-gray-600 small"><%= request.getAttribute("user")%></span></a>
                             </div>
                         </li>
                     </ul>
@@ -69,14 +82,18 @@ c<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
                                 <form method="post">
                                     <div class="form-group">
                                         <div class="form-row">
-                                            <div class="col"><label>Nom :</label><input class="form-control" type="text" required></div>
-                                            <div class="col"><label>Prenom :</label><input class="form-control" type="text" required></div>
+                                            <div class="col"><label>Nom :</label><input class="form-control" type="text"
+                                                                                        required></div>
+                                            <div class="col"><label>Prenom :</label><input class="form-control"
+                                                                                           type="text" required></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-row">
-                                            <div class="col"><label>date de naissance:</label><input class="form-control" type="date" required></div>
-                                            <div class="col"><label>Immatriculation BAC :</label><input class="form-control" type="text" required></div>
+                                            <div class="col"><label>date de naissance:</label><input
+                                                    class="form-control" type="date" required></div>
+                                            <div class="col"><label>Immatriculation BAC :</label><input
+                                                    class="form-control" type="text" required></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -84,18 +101,21 @@ c<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
                                             <div class="col"><label>Année d'inscription : </label>
                                                 <select class="form-control" required>
 
-                                                        <option selected disabled value="">--Selectionner l'année--</option>
-                                                        <option value="L1">L1</option>
-                                                        <option value="L2">L2</option>
-                                                        <option value="L3">L3</option>
-                                                        <option value="M1">M1</option>
-                                                        <option value="M2">M2</option>
+                                                    <option selected disabled value="">--Selectionner l'année--</option>
+                                                    <option value="L1">L1</option>
+                                                    <option value="L2">L2</option>
+                                                    <option value="L3">L3</option>
+                                                    <option value="M1">M1</option>
+                                                    <option value="M2">M2</option>
 
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="btn btn-success float-right" type="submit" style="font-size: 25px;"><i class="fa fa-plus" style="font-size: 25px;"></i>&nbsp;Inscrire</button></form>
+                                    <button class="btn btn-success float-right" type="submit" style="font-size: 25px;">
+                                        <i class="fa fa-plus" style="font-size: 25px;"></i>&nbsp;Inscrire
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -107,7 +127,8 @@ c<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
                 <div class="text-center my-auto copyright"><span>Copyright © Brand 2019</span></div>
             </div>
         </footer>
-    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    </div>
+    <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>

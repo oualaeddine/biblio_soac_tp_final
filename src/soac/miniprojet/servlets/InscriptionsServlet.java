@@ -49,24 +49,36 @@ public class InscriptionsServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String date_naiss = request.getParameter("date_naiss");
-        String sexe = request.getParameter("sexe");
-        String num_bac = request.getParameter("num_bac");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            Employees user = (Employees)session.getAttribute("user");
 
-        Students s = new Students();
+            request.setAttribute("user",user.getNom()+" "+user.getPrenom());
+            request.setAttribute("role",user.getRole());
 
-        s.setNom(nom);
-        s.setPrenom(prenom);
-        s.setDateNaiss(new Date(date_naiss));
-        s.setSexe(sexe);
-        s.setNumBac(num_bac);
-        s.setDateInsc(new Date());
+            String nom = request.getParameter("nom");
+            String prenom = request.getParameter("prenom");
+            String date_naiss = request.getParameter("date_naiss");
+            String sexe = request.getParameter("sexe");
+            String num_bac = request.getParameter("num_bac");
 
-        StudentsApi api = new StudentsApi();
-        api.add(s);
+            Students s = new Students();
 
-        doGet(request, response);
+            s.setNom(nom);
+            s.setPrenom(prenom);
+            s.setDateNaiss(new Date(date_naiss));
+            s.setSexe(sexe);
+            s.setNumBac(num_bac);
+            s.setDateInsc(new Date());
+
+            StudentsApi api = new StudentsApi();
+            api.add(s);
+
+            doGet(request, response);
+
+        } else response.sendRedirect(request.getContextPath() + "/login");
+
+
+
     }
 }

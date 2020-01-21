@@ -44,7 +44,7 @@ public class ReinscriptionsServlet extends HttpServlet {
 
             LinkedList<Students> students = new StudentsApi().getAll();
             request.setAttribute("students", students);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/reinscription.jsp").forward(request, response);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Reinscriptions.jsp").forward(request, response);
 
         } else response.sendRedirect(request.getContextPath() + "/login");
 

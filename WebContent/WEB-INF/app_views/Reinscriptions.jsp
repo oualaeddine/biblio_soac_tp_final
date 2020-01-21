@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-<%String role=(String)request.getAttribute("role");%>
+<%String role = (String) request.getAttribute("role");%>
 
 <head>
     <meta charset="utf-8">
@@ -31,19 +31,28 @@
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-text mx-3"><span>Biblio</span></div>
             </a>
-            <hr class="sidebar-divider my-0">
-            <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                <%if(role=="RESP_BIBLIO"){%>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
+            <hr class="sidebar-divider my-0">            <ul class="nav navbar-nav text-light" id="accordionSidebar">                <%if (role.equals("RESP_BIBLIO")) {%>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/dashboard"><i
+                        class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/users"><i
+                        class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
                 <%}%>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/students"><i class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/inscription"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="<%=request.getContextPath() %>/reinscription"><i class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/students"><i
+                        class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/inscription"><i
+                        class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/reinscription"><i
+                        class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="<%=request.getContextPath() %>/logout">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></li>
             </ul>
-            <div class="text-center d-none d-md-inline">
-                <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
-            </div>
+            <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
         </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
@@ -58,12 +67,7 @@
                                 <a class="dropdown-toggle nav-link"
                                    data-toggle="dropdown" aria-expanded="false"
                                    href="#"><span
-                                        class="d-none d-lg-inline mr-2 text-gray-600 small"><%= request.getAttribute("user")%></span><img
-                                        class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
-                                <div>
-                                    <a class="dropdown-item" role="presentation" href="/logout"><i
-                                            class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
-                                </div>
+                                        class="d-none d-lg-inline mr-2 text-gray-600 small"><%= request.getAttribute("user")%></span></a>
                             </div>
                         </li>
                     </ul>
@@ -126,20 +130,24 @@
                                                 <%= student.getDateInsc()%>
                                             </td>
                                             <td class="text-center" style="padding-top: 0px;">
-                                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#staticBackdrop"><i class="fa fa-recycle"></i>
+                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                        data-target="#staticBackdrop"><i class="fa fa-recycle"></i>
                                                     Réinscrire
                                                 </button>
 
                                                 <!-- Modal -->
-                                                <div class="modal fade " id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+                                                <div class="modal fade " id="staticBackdrop" data-backdrop="static"
+                                                     tabindex="-1" role="dialog"
                                                      aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <form>
 
                                                         <div class="modal-dialog" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="staticBackdropLabel">Réinscrire un etudiant</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <h5 class="modal-title" id="staticBackdropLabel">
+                                                                        Réinscrire un etudiant</h5>
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
@@ -147,14 +155,22 @@
 
 
                                                                     <div class="form-group">
-                                                                        <label for="disabledTextInput">Niveau en cours</label>
-                                                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="<% %>niveau a retourner" disabled>
+                                                                        <label for="disabledTextInput">Niveau en
+                                                                            cours</label>
+                                                                        <input type="text" id="disabledTextInput"
+                                                                               class="form-control"
+                                                                               placeholder="<% %>niveau a retourner"
+                                                                               disabled>
                                                                     </div>
 
                                                                     <div class="form-group">
                                                                         <label for="niveau">Niveau : </label>
-                                                                        <select id="niveau" name="niveau" class="form-control form-control-lg" required>
-                                                                            <option selected disabled value="">--Selectionner--</option>
+                                                                        <select id="niveau" name="niveau"
+                                                                                class="form-control form-control-lg"
+                                                                                required>
+                                                                            <option selected disabled value="">
+                                                                                --Selectionner--
+                                                                            </option>
                                                                             <option value="L1">L1</option>
                                                                             <option value="L2">L2</option>
                                                                             <option value="L3">L3</option>
@@ -166,10 +182,12 @@
 
 
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler
+                                                                        <button type="button" class="btn btn-danger"
+                                                                                data-dismiss="modal">Annuler
                                                                         </button>
                                                                         <button type="submit" class="btn btn-success"><i
-                                                                                class="fa fa-dot-circle-o"></i> Réinscrire
+                                                                                class="fa fa-dot-circle-o"></i>
+                                                                            Réinscrire
                                                                         </button>
                                                                     </div>
                                                                 </div>

@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * Servlet implementation class DashboardServlet
  */
-@WebServlet("/dashboard")
+@WebServlet({"/dashboard","/Dashboard"})
 public class DashboardServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private StudentsBiblioInscAPI periodApi;
@@ -50,40 +50,49 @@ public class DashboardServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String debut = request.getParameter("start");
-        String fin = request.getParameter("end");
-        switch (request.getParameter("action")) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+            Employees user = (Employees)session.getAttribute("user");
 
-            case "add_period": {
-                if (!ScholarYearHelper.isInscPeriodOpen()) {
-                    InscriptionPeriod period = new InscriptionPeriod();
-                    period.setStartInscDate(new Date(debut));
-                    period.setEndInscDate(new Date(fin));
-                    periodApi.add(period);
+            request.setAttribute("user",user.getNom()+" "+user.getPrenom());
+            request.setAttribute("role",user.getRole());
+            String debut = request.getParameter("start");
+            String fin = request.getParameter("end");
+            switch (request.getParameter("action")) {
+
+                case "add_period": {
+                    if (!ScholarYearHelper.isInscPeriodOpen()) {
+                        InscriptionPeriod period = new InscriptionPeriod();
+                        period.setStartInscDate(new Date(debut));
+                        period.setEndInscDate(new Date(fin));
+                        periodApi.add(period);
+                    }
+                    break;
                 }
-                break;
-            }
-            case "edit_period": {
-                if (ScholarYearHelper.isInscPeriodOpen()) {
-                    InscriptionPeriod period = new InscriptionPeriod();
-                    period.setStartInscDate(new Date(debut));
-                    period.setEndInscDate(new Date(fin));
-                    periodApi.update(period);
+                case "edit_period": {
+                    if (ScholarYearHelper.isInscPeriodOpen()) {
+                        InscriptionPeriod period = new InscriptionPeriod();
+                        period.setStartInscDate(new Date(debut));
+                        period.setEndInscDate(new Date(fin));
+                        periodApi.update(period);
+                    }
+                    break;
                 }
-                break;
-            }
-            case "end_period": {
-                if (ScholarYearHelper.isInscPeriodOpen()) {
-                    String _id = request.getParameter("id");
-                    int id = Integer.parseInt(_id);
-                    InscriptionPeriod period = (InscriptionPeriod) periodApi.getById(id);
-                    period.setEndInscDate(new Date(fin));
-                    periodApi.update(period);
+                case "end_period": {
+                    if (ScholarYearHelper.isInscPeriodOpen()) {
+                        String _id = request.getParameter("id");
+                        int id = Integer.parseInt(_id);
+                        InscriptionPeriod period = (InscriptionPeriod) periodApi.getById(id);
+                        period.setEndInscDate(new Date(fin));
+                        periodApi.update(period);
+                    }
+                    break;
                 }
-                break;
             }
-        }
-        doGet(request, response);
+            doGet(request, response);
+
+        } else response.sendRedirect(request.getContextPath() + "/login");
+
     }
 
 }

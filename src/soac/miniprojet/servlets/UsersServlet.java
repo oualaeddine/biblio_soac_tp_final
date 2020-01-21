@@ -55,25 +55,47 @@ public class UsersServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			doGet(request, response);
+
+		doGet(request, response);
 	}
 
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doPut(req, resp);
-		String id = req.getParameter("id");
-		new EmployeesApi().getById(Integer.parseInt(id));
-		doGet(req,resp);
+
+		HttpSession session = req.getSession();
+		if (session.getAttribute("user") != null) {
+			Employees user = (Employees)session.getAttribute("user");
+
+			req.setAttribute("user",user.getNom()+" "+user.getPrenom());
+			req.setAttribute("role",user.getRole());
+
+			super.doPut(req, resp);
+			String id = req.getParameter("id");
+			new EmployeesApi().getById(Integer.parseInt(id));
+			doGet(req,resp);
+
+		} else resp.sendRedirect(req.getContextPath() + "/login");
+
 
 
 	}
 
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id = req.getParameter("id");
-		new EmployeesApi().deleteById(Integer.parseInt(id));
+		HttpSession session = req.getSession();
+		if (session.getAttribute("user") != null) {
+			Employees user = (Employees)session.getAttribute("user");
 
-		super.doDelete(req, resp);
+			req.setAttribute("user",user.getNom()+" "+user.getPrenom());
+			req.setAttribute("role",user.getRole());
+
+			String id = req.getParameter("id");
+			new EmployeesApi().deleteById(Integer.parseInt(id));
+
+			super.doDelete(req, resp);
+
+		} else resp.sendRedirect(req.getContextPath() + "/login");
+
 
 
 	}

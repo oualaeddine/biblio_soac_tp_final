@@ -13,6 +13,10 @@ public class StudentsApi {
 
     StudentsDAO dao;
 
+    public StudentsApi() {
+        this.dao=new StudentsDAO();
+    }
+
     public Object getById(int id) {
 
         return dao.getById(id);
