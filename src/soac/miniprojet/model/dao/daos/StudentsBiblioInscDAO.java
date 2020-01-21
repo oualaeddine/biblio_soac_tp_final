@@ -1,7 +1,6 @@
 package soac.miniprojet.model.dao.daos;
 // Generated 7 janv. 2020 11:56:55 by Hibernate Tools 5.4.7.Final
 
-import soac.miniprojet.model.beans.ScholarYear;
 import soac.miniprojet.model.beans.Students;
 import soac.miniprojet.model.beans.StudentsBiblioInsc;
 import soac.miniprojet.model.dao.DAO;
@@ -38,7 +37,6 @@ public class StudentsBiblioInscDAO extends DAO implements DAOInterface {
         try {
             statement.execute("INSERT INTO students_biblio_insc (`student_id`,`scholar_year_id`,`date_insc` ) VALUES(" +
                     "'" + studentsBiblioInsc.getStudent().getId() + "'," +
-                    "'" + studentsBiblioInsc.getScholarYear().getId() + "'," +
                     "'" + studentsBiblioInsc.getDateInsc() + "'" + "," +
                     ");");
             return true;
@@ -57,7 +55,6 @@ public class StudentsBiblioInscDAO extends DAO implements DAOInterface {
             while (result.next()) {
 				StudentsBiblioInsc studentsBiblioInsc = new StudentsBiblioInsc();
 				studentsBiblioInsc.setDateInsc(result.getDate("id"));
-				studentsBiblioInsc.setScholarYear((ScholarYear) new ScholarYearDAO().getById(result.getInt("scholar_year_id")));
 				studentsBiblioInsc.setStudent((Students) new StudentsDAO().getById(result.getInt("student_id")));
 				list.add(studentsBiblioInsc);
             }

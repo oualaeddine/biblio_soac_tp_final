@@ -23,8 +23,6 @@ public class EmployeesDAO extends DAO implements DAOInterface {
                 employe.setRole(result.getString("role"));
                 employe.setUsername(result.getString("username"));
                 employe.setPassword(result.getString("password"));
-
-
                 return employe;
             }
         } catch (SQLException e) {

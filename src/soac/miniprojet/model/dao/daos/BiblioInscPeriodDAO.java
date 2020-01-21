@@ -2,7 +2,6 @@ package soac.miniprojet.model.dao.daos;
 // Generated 7 janv. 2020 11:56:55 by Hibernate Tools 5.4.7.Final
 
 import soac.miniprojet.model.beans.BiblioInscPeriod;
-import soac.miniprojet.model.beans.ScholarYear;
 import soac.miniprojet.model.dao.DAO;
 import soac.miniprojet.model.dao.DAOInterface;
 
@@ -25,8 +24,6 @@ public class BiblioInscPeriodDAO extends DAO implements DAOInterface {
                 insper.setId(result.getInt("id"));
                 insper.setDateEnd(result.getDate("date_end"));
                 insper.setDateStart(result.getDate("date_start"));
-                insper.setScholarYear((ScholarYear) new ScholarYearDAO().getById(result.getInt("scholat_year_id")));
-
                 return insper;
             }
         } catch (SQLException e) {
@@ -47,7 +44,6 @@ public class BiblioInscPeriodDAO extends DAO implements DAOInterface {
             statement.execute("UPDATE biblio_insc_period SET " +
                     "date_start = '" + biblioInscPeriod.getDateStart() + "'," +
                     "date_end = '" + biblioInscPeriod.getDateEnd() + "'," +
-                    "scholar_year_id = '" + biblioInscPeriod.getScholarYear() + "'," +
 
                     " WHERE biblio_insc_period.id=" + biblioInscPeriod.getId() + ";");
             return true;
@@ -64,7 +60,6 @@ public class BiblioInscPeriodDAO extends DAO implements DAOInterface {
             statement.execute("INSERT INTO biblio_insc_period (`date_start`,`date_end`,`scholar_year_id` ) VALUES(" +
                     "'" + biblioInscPeriod.getDateStart() + "'," +
                     "'" + biblioInscPeriod.getDateEnd() + "'," +
-                    "'" + biblioInscPeriod.getScholarYear() + "'" + "," +
                     ");");
             return true;
         } catch (SQLException e) {
@@ -84,7 +79,6 @@ public class BiblioInscPeriodDAO extends DAO implements DAOInterface {
                 biblioInscPeriod.setId(result.getInt("id"));
                 biblioInscPeriod.setDateStart(result.getDate("nom"));
                 biblioInscPeriod.setDateEnd(result.getDate("prenom"));
-                biblioInscPeriod.setScholarYear((ScholarYear) new ScholarYearDAO().getById(result.getInt("scholat_year_id") ));
 
 
                 list.add(biblioInscPeriod);

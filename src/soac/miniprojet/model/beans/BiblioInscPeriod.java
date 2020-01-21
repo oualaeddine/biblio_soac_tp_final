@@ -9,18 +9,13 @@ import java.util.Date;
 public class BiblioInscPeriod implements java.io.Serializable {
 
 	private Integer id;
-	private ScholarYear scholarYear;
 	private Date dateStart;
 	private Date dateEnd;
 
 	public BiblioInscPeriod() {
 	}
 
-	public BiblioInscPeriod(ScholarYear scholarYear, Date dateStart, Date dateEnd) {
-		this.scholarYear = scholarYear;
-		this.dateStart = dateStart;
-		this.dateEnd = dateEnd;
-	}
+
 
 	public Integer getId() {
 		return this.id;
@@ -30,13 +25,6 @@ public class BiblioInscPeriod implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public ScholarYear getScholarYear() {
-		return this.scholarYear;
-	}
-
-	public void setScholarYear(ScholarYear scholarYear) {
-		this.scholarYear = scholarYear;
-	}
 
 
 	public Date getDateStart() {

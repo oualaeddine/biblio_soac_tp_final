@@ -9,7 +9,6 @@ import java.util.Date;
 public class StudentsBiblioInsc implements java.io.Serializable {
 
 	private Students student;
-	private ScholarYear scholarYear;
 	private Date dateInsc;
 
 	public StudentsBiblioInsc() {
@@ -21,14 +20,6 @@ public class StudentsBiblioInsc implements java.io.Serializable {
 
 	public void setStudent(Students student) {
 		this.student = student;
-	}
-
-	public ScholarYear getScholarYear() {
-		return scholarYear;
-	}
-
-	public void setScholarYear(ScholarYear scholarYear) {
-		this.scholarYear = scholarYear;
 	}
 
 	public Date getDateInsc() {

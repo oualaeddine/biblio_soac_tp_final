@@ -11,7 +11,6 @@ import java.util.Set;
 public class InscriptionPeriod implements java.io.Serializable {
 
 	private Integer id;
-	private ScholarYear scholarYear;
 	private Date startInscDate;
 	private Date endInscDate;
 	private Date startReinscDate;
@@ -21,24 +20,7 @@ public class InscriptionPeriod implements java.io.Serializable {
 	public InscriptionPeriod() {
 	}
 
-	public InscriptionPeriod(ScholarYear scholarYear, Date startInscDate, Date endInscDate, Date startReinscDate,
-			Date endReinscDate) {
-		this.scholarYear = scholarYear;
-		this.startInscDate = startInscDate;
-		this.endInscDate = endInscDate;
-		this.startReinscDate = startReinscDate;
-		this.endReinscDate = endReinscDate;
-	}
 
-	public InscriptionPeriod(ScholarYear scholarYear, Date startInscDate, Date endInscDate, Date startReinscDate,
-			Date endReinscDate, Set studentInscriptions) {
-		this.scholarYear = scholarYear;
-		this.startInscDate = startInscDate;
-		this.endInscDate = endInscDate;
-		this.startReinscDate = startReinscDate;
-		this.endReinscDate = endReinscDate;
-		this.studentInscriptions = studentInscriptions;
-	}
 
 	public Integer getId() {
 		return this.id;
@@ -48,13 +30,6 @@ public class InscriptionPeriod implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public ScholarYear getScholarYear() {
-		return this.scholarYear;
-	}
-
-	public void setScholarYear(ScholarYear scholarYear) {
-		this.scholarYear = scholarYear;
-	}
 
 	public Date getStartInscDate() {
 		return this.startInscDate;
