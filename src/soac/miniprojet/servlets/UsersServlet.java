@@ -42,7 +42,7 @@ public class UsersServlet extends HttpServlet {
 			request.setAttribute("users",users);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Users.jsp").forward(request, response);
 
-		} else response.sendRedirect("/Login");
+		} else response.sendRedirect(request.getContextPath() + "/login");
 
 
 	}
@@ -52,11 +52,6 @@ public class UsersServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			doGet(request, response);
-	}
-
-	@Override
-	protected long getLastModified(HttpServletRequest req) {
-				return super.getLastModified(req);
 	}
 
 	@Override

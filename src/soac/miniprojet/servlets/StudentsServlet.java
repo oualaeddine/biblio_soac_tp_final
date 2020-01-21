@@ -42,7 +42,7 @@ public class StudentsServlet extends HttpServlet {
             request.setAttribute("students", students);
             this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Students.jsp").forward(request, response);
 
-        } else response.sendRedirect("/Login");
+        } else response.sendRedirect(request.getContextPath() + "/login");
 
 
 

@@ -8,8 +8,6 @@ import java.util.Date;
 
 
 public class ScholarYearHelper {
-
-
     public static boolean isInscPeriodOpen() {
         InscriptionPeriodDAO periodDAO = new InscriptionPeriodDAO();
         InscriptionPeriod lp = periodDAO.GetLastPeriode();

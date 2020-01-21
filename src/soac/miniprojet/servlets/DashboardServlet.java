@@ -38,7 +38,7 @@ public class DashboardServlet extends HttpServlet {
         if (session.getAttribute("user") != null) {
 
             this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Dashboard.jsp").forward(request, response);
-        } else response.sendRedirect("/Login");
+        } else response.sendRedirect(request.getContextPath() + "/login");
     }
 
     /**

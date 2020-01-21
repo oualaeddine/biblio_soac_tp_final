@@ -39,7 +39,7 @@ public class AuthServlet extends HttpServlet {
 
             this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Login.jsp").forward(request, response);
         } else {
-            response.sendRedirect("/dashboard");
+            response.sendRedirect(request.getContextPath() + "/dashboard");
         }
 
     }
@@ -60,7 +60,7 @@ public class AuthServlet extends HttpServlet {
             HttpSession session = request.getSession();
             Employees employee = employeeApi.getByUsername(username);
             session.setAttribute("user", employee);
-            response.sendRedirect("/dashboard");
+            response.sendRedirect(request.getContextPath() + "/dashboard");
         } else {
             request.setAttribute("error", true);
             doGet(request, response);
