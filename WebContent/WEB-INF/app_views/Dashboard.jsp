@@ -2,14 +2,15 @@
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
-<%String role="user";%>
+<%String role = "user";%>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Biblio - Dashboard</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
@@ -24,31 +25,42 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                <%if(role=="admin"){%>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
+                <%if (role == "admin") {%>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/dashboard"><i
+                        class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/users"><i
+                        class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
                 <%}%>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/students"><i class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/inscription"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="/reinscription"><i class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/students"><i
+                        class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/inscription"><i
+                        class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="/reinscription"><i
+                        class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
             </ul>
-            <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+            <div class="text-center d-none d-md-inline">
+                <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+            </div>
         </div>
     </nav>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                <div class="container-fluid">
+                    <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i
+                            class="fas fa-bars"></i></button>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
                         <li class="nav-item dropdown no-arrow" role="presentation">
-                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie Luna</span><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
-                                <div
-                                        class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
-                                    <a
-                                            class="dropdown-item" role="presentation" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
-                                    <div class="dropdown-divider">
-
-                                    </div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
+                            <div class="nav-item dropdown no-arrow">
+                                <a class="dropdown-toggle nav-link"
+                                                                       data-toggle="dropdown" aria-expanded="false"
+                                                                       href="#"><span
+                                    class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie Luna</span><img
+                                    class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                                <div>
+                                    <a class="dropdown-item" role="presentation" href="#"><i
+                                            class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -65,23 +77,29 @@
                                 <h6 class="text-primary font-weight-bold m-0">Année scolaire</h6>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary">Action</button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#add_year">Demarrer une nouvelle periode</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#add_year">Demarrer
+                                            une nouvelle periode</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_year">Modifier la periode en cours</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_year">Modifier
+                                            la periode en cours</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#delete_year">Fermer la periode en cours</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#delete_year">Fermer
+                                            la periode en cours</a>
 
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col"><label class="col-form-label">Debut de l'année scolaire<input class="form-control-sm" type="date" readonly=""></label></div>
-                                    <div class="col"><label>FIn de l'année scolaire</label><input class="form-control-sm" type="date" readonly=""></div>
+                                    <div class="col"><label class="col-form-label">Debut de l'année scolaire<input
+                                            class="form-control-sm" type="date" readonly=""></label></div>
+                                    <div class="col"><label>FIn de l'année scolaire</label><input
+                                            class="form-control-sm" type="date" readonly=""></div>
                                 </div>
                             </div>
                         </div>
@@ -91,16 +109,20 @@
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h6 class="text-primary font-weight-bold m-0">Periode d'inscriptions</h6>
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-primary" >Action</button>
-                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button type="button" class="btn btn-primary">Action</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#add_periode">Demarrer une nouvelle periode</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#add_periode">Demarrer
+                                            une nouvelle periode</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit-periode">Modifier la periode en cours</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit-periode">Modifier
+                                            la periode en cours</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" data-toggle="modal" data-target="#delete_periode">Fermer la periode en cours</a>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#delete_periode">Fermer
+                                            la periode en cours</a>
 
                                     </div>
                                 </div>
@@ -113,7 +135,8 @@
 
 
                                     </label></div>
-                                    <div class="col"><label>FIn :</label><input class="form-control-sm" type="date" readonly=""></div>
+                                    <div class="col"><label>FIn :</label><input class="form-control-sm" type="date"
+                                                                                readonly=""></div>
                                 </div>
                             </div>
                         </div>
@@ -126,18 +149,20 @@
                 <div class="text-center my-auto copyright"><span>Copyright © TP SOAC 2019</span></div>
             </div>
         </footer>
-    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    </div>
+    <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="assets/js/theme.js"></script>
 
 <!-- Add periode Modal -->
-<div class="modal fade" id="add_periode" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="add_periode" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" >Ouvrire une nouvelle periode</h5>
+                <h5 class="modal-title">Ouvrire une nouvelle periode</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -146,11 +171,12 @@
                 <form>
                     <input type="hidden" name="action" value="add_periode">
                     <div class="form-group">
-                        <label >Date de debut :</label>
-                        <input type="date" class="form-control date-picker" name="start" placeholder="Date début" required>
+                        <label>Date de debut :</label>
+                        <input type="date" class="form-control date-picker" name="start" placeholder="Date début"
+                               required>
                     </div>
                     <div class="form-group">
-                        <label >Date de fin</label>
+                        <label>Date de fin</label>
                         <input type="date" class="form-control" name="end" placeholder="Date fin" required>
                     </div>
                     <div class="modal-footer">
@@ -165,7 +191,8 @@
 </div>
 
 <!-- Edit periode Modal -->
-<div class="modal fade" id="edit-periode" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="edit-periode" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -178,12 +205,14 @@
                 <form>
                     <input type="hidden" name="action" value="edit_periode">
                     <div class="form-group">
-                        <label >Date de debut :</label>
-                        <input type="date" class="form-control" name="start" placeholder="Nouvelle date" value="" required >
+                        <label>Date de debut :</label>
+                        <input type="date" class="form-control" name="start" placeholder="Nouvelle date" value=""
+                               required>
                     </div>
                     <div class="form-group">
-                        <label >Date de fin</label>
-                        <input type="date" class="form-control" name="end" placeholder="Nouvelle date" value="" required>
+                        <label>Date de fin</label>
+                        <input type="date" class="form-control" name="end" placeholder="Nouvelle date" value=""
+                               required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
@@ -197,7 +226,8 @@
 </div>
 
 <!-- Delete periode Modal -->
-<div class="modal fade" id="delete_periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="delete_periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -221,11 +251,12 @@
 </div>
 
 <!-- Add year Modal -->
-<div class="modal fade" id="add_year" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="add_year" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" >Ouvrire une nouvelle année</h5>
+                <h5 class="modal-title">Ouvrire une nouvelle année</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -234,11 +265,12 @@
                 <form>
                     <input type="hidden" name="action" value="add_year">
                     <div class="form-group">
-                        <label >Date de debut :</label>
-                        <input type="date" class="form-control date-picker" name="start" placeholder="Date début" required>
+                        <label>Date de debut :</label>
+                        <input type="date" class="form-control date-picker" name="start" placeholder="Date début"
+                               required>
                     </div>
                     <div class="form-group">
-                        <label >Date de fin</label>
+                        <label>Date de fin</label>
                         <input type="date" class="form-control" name="end" placeholder="Date fin" required>
                     </div>
                     <div class="modal-footer">
@@ -253,7 +285,8 @@
 </div>
 
 <!-- Edit year Modal -->
-<div class="modal fade" id="edit_year" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+<div class="modal fade" id="edit_year" data-backdrop="static" tabindex="-1" role="dialog"
+     aria-labelledby="staticBackdropLabel1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -266,16 +299,18 @@
                 <form>
                     <input type="hidden" name="action" value="edit_year">
                     <div class="form-group">
-                        <label >Date de debut :</label>
-                        <input type="date" class="form-control" name="start" placeholder="Nouvelle date" value="" required >
+                        <label>Date de debut :</label>
+                        <input type="date" class="form-control" name="start" placeholder="Nouvelle date" value=""
+                               required>
                     </div>
                     <div class="form-group">
-                        <label >Date de fin</label>
-                        <input type="date" class="form-control" name="end" placeholder="Nouvelle date" value="" required>
+                        <label>Date de fin</label>
+                        <input type="date" class="form-control" name="end" placeholder="Nouvelle date" value=""
+                               required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
-                        <button type="submit"  class="btn btn-success">Modifier</button>
+                        <button type="submit" class="btn btn-success">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -285,7 +320,8 @@
 </div>
 
 <!-- Delete year Modal -->
-<div class="modal fade" id="delete_year" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<div class="modal fade" id="delete_year" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
