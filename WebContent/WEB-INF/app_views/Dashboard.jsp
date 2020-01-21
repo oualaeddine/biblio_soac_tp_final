@@ -57,7 +57,10 @@
                                                                        href="#"><span
                                     class="d-none d-lg-inline mr-2 text-gray-600 small">Valerie Luna</span><img
                                     class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
-                                <div>
+                                <div
+                                        class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu">
+
+
                                     <a class="dropdown-item" role="presentation" href="#"><i
                                             class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>
                                 </div>
