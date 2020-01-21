@@ -20,22 +20,8 @@ public class LogoutServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         HttpSession session = request.getSession();
-        if (session.getAttribute("user") != null) {
-
-
-            if (request.getAttribute("error") == null)
-                request.setAttribute("error", false);
-
-            if (!(boolean) request.getAttribute("error"))
-                request.setAttribute("error", false);
-
-            session.removeAttribute("user");
-            response.sendRedirect("Auth");
-
-        } else response.sendRedirect("/Login");
-
-
+        session.removeAttribute("user");
+        response.sendRedirect("/login");
     }
 }

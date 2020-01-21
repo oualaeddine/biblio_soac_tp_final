@@ -38,7 +38,9 @@ public class AuthServlet extends HttpServlet {
                 request.setAttribute("error", false);
 
             this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Login.jsp").forward(request, response);
-        } else response.sendRedirect("/Dashboard");
+        } else {
+            response.sendRedirect("/dashboard");
+        }
 
     }
 
@@ -46,18 +48,19 @@ public class AuthServlet extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         EmployeesApi employeeApi = new EmployeesApi();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
         System.out.println(username + " " + password);
+
         boolean isAuth = employeeApi.login(username, password);
 
         if (isAuth) {
             HttpSession session = request.getSession();
             Employees employee = employeeApi.getByUsername(username);
             session.setAttribute("user", employee);
-            response.sendRedirect("/Dashboard");
+            response.sendRedirect("/dashboard");
         } else {
             request.setAttribute("error", true);
             doGet(request, response);
