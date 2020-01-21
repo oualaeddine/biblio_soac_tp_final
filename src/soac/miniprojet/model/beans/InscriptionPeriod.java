@@ -15,12 +15,9 @@ public class InscriptionPeriod implements java.io.Serializable {
 	private Date endInscDate;
 	private Date startReinscDate;
 	private Date endReinscDate;
-	private Set studentInscriptions = new HashSet(0);
 
 	public InscriptionPeriod() {
 	}
-
-
 
 	public Integer getId() {
 		return this.id;
@@ -29,7 +26,6 @@ public class InscriptionPeriod implements java.io.Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public Date getStartInscDate() {
 		return this.startInscDate;
@@ -61,14 +57,6 @@ public class InscriptionPeriod implements java.io.Serializable {
 
 	public void setEndReinscDate(Date endReinscDate) {
 		this.endReinscDate = endReinscDate;
-	}
-
-	public Set getStudentInscriptions() {
-		return this.studentInscriptions;
-	}
-
-	public void setStudentInscriptions(Set studentInscriptions) {
-		this.studentInscriptions = studentInscriptions;
 	}
 
 }

@@ -35,8 +35,9 @@ public class StudentsBiblioInscDAO extends DAO implements DAOInterface {
     public boolean add(Object object) {
         StudentsBiblioInsc studentsBiblioInsc = (StudentsBiblioInsc) object;
         try {
-            statement.execute("INSERT INTO students_biblio_insc (`student_id`,`scholar_year_id`,`date_insc` ) VALUES(" +
+            statement.execute("INSERT INTO students_biblio_insc (`student_id`,`biblio_insc_period_id`,`date_insc` ) VALUES(" +
                     "'" + studentsBiblioInsc.getStudent().getId() + "'," +
+                    "'" + studentsBiblioInsc.getInscPeriod().getId() + "'," +
                     "'" + studentsBiblioInsc.getDateInsc() + "'" + "," +
                     ");");
             return true;

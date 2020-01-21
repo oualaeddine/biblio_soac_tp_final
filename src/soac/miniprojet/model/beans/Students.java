@@ -17,31 +17,8 @@ public class Students implements java.io.Serializable {
 	private String sexe;
 	private String numBac;
 	private Date dateInsc;
-	private Set studentsBiblioInscs = new HashSet(0);
-	private Set studentInscriptions = new HashSet(0);
 
 	public Students() {
-	}
-
-	public Students(String nom, String prenom, Date dateNaiss, String sexe, String numBac, Date dateInsc) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateNaiss = dateNaiss;
-		this.sexe = sexe;
-		this.numBac = numBac;
-		this.dateInsc = dateInsc;
-	}
-
-	public Students(String nom, String prenom, Date dateNaiss, String sexe, String numBac, Date dateInsc,
-			Set studentsBiblioInscs, Set studentInscriptions) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.dateNaiss = dateNaiss;
-		this.sexe = sexe;
-		this.numBac = numBac;
-		this.dateInsc = dateInsc;
-		this.studentsBiblioInscs = studentsBiblioInscs;
-		this.studentInscriptions = studentInscriptions;
 	}
 
 	public Integer getId() {
@@ -99,21 +76,4 @@ public class Students implements java.io.Serializable {
 	public void setDateInsc(Date dateInsc) {
 		this.dateInsc = dateInsc;
 	}
-
-	public Set getStudentsBiblioInscs() {
-		return this.studentsBiblioInscs;
-	}
-
-	public void setStudentsBiblioInscs(Set studentsBiblioInscs) {
-		this.studentsBiblioInscs = studentsBiblioInscs;
-	}
-
-	public Set getStudentInscriptions() {
-		return this.studentInscriptions;
-	}
-
-	public void setStudentInscriptions(Set studentInscriptions) {
-		this.studentInscriptions = studentInscriptions;
-	}
-
 }

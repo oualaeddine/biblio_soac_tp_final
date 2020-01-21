@@ -115,8 +115,7 @@ public class StudentsDAO extends DAO implements DAOInterface {
 
 	public boolean Reinscrire(StudentsBiblioInsc studentInscription) {
 		try {
-			statement.execute("INSERT INTO student_inscription (student_id, insc_period_id, " +
-					"level, insc_date)" +
+			statement.execute("INSERT INTO students_biblio_insc (student_id, biblio_insc_period_id , date_insc)" +
 					"VALUES(" +
 					studentInscription.getStudent().getId() + "," +
 					studentInscription.getInscPeriod().getId() + "," +

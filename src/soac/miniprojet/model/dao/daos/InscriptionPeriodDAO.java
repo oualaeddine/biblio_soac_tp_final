@@ -1,6 +1,8 @@
 package soac.miniprojet.model.dao.daos;
 // Generated 7 janv. 2020 11:56:55 by Hibernate Tools 5.4.7.Final
 
+
+
 import soac.miniprojet.model.beans.InscriptionPeriod;
 import soac.miniprojet.model.dao.DAO;
 import soac.miniprojet.model.dao.DAOInterface;
@@ -18,7 +20,7 @@ public class InscriptionPeriodDAO extends DAO implements DAOInterface {
 	public Object getById(int id) {
 		ResultSet result;
 		try {
-			result = statement.executeQuery("SELECT * FROM inscription_period WHERE id=" + id);
+			result = statement.executeQuery("SELECT * FROM biblio_insc_period WHERE id=" + id);
 			if (result.next()) {
 				InscriptionPeriod inscriptionPeriod = new InscriptionPeriod();
 				inscriptionPeriod.setId(result.getInt("id"));
@@ -39,18 +41,19 @@ public class InscriptionPeriodDAO extends DAO implements DAOInterface {
 		return  deleteById(id,"inscription_period");
 	}
 
+
 	@Override
 	public boolean update(Object object) {
 
 		InscriptionPeriod inscriptionPeriod = (InscriptionPeriod) object;
 		try {
-			statement.execute("UPDATE inscription_period SET " +
+			statement.execute("UPDATE biblio_insc_period SET " +
 					"end_insc_date = '" + inscriptionPeriod.getEndInscDate() + "'," +
 					"end_reinsc_date = '" + inscriptionPeriod.getEndReinscDate() + "'," +
 					"start_insc_date = '" + inscriptionPeriod.getStartInscDate() + "'," +
 					"start_reinsc_date = '" + inscriptionPeriod.getStartReinscDate() + "'," +
 
-					" WHERE inscription_period.id=" + inscriptionPeriod.getId() + ";");
+					" WHERE biblio_insc_period.id=" + inscriptionPeriod.getId() + ";");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -62,7 +65,7 @@ public class InscriptionPeriodDAO extends DAO implements DAOInterface {
 	public boolean add(Object object) {
 		InscriptionPeriod inscriptionPeriod = (InscriptionPeriod) object;
 		try {
-			statement.execute("INSERT INTO inscription_period (`start_insc_date`,`start_reinsc_date`,`end_insc_date`,`end_reinsc_date`,`scholar_year` ) VALUES(" +
+			statement.execute("INSERT INTO biblio_insc_period (`start_insc_date`,`start_reinsc_date`,`end_insc_date`,`end_reinsc_date`,`scholar_year` ) VALUES(" +
 					"'" + inscriptionPeriod.getStartInscDate() + "'," +
 					"'" + inscriptionPeriod.getStartReinscDate() + "'," +
 					"'" + inscriptionPeriod.getEndInscDate() + "'," +
@@ -82,13 +85,12 @@ public class InscriptionPeriodDAO extends DAO implements DAOInterface {
 		try {
 			result = statement.executeQuery("SELECT * FROM biblio_insc_period;");
 			while (result.next()) {
-                InscriptionPeriod inscriptionPeriod = new InscriptionPeriod();
-                inscriptionPeriod.setId(result.getInt("id"));
-                inscriptionPeriod.setStartInscDate(result.getDate("start_insc_date"));
-                inscriptionPeriod.setStartReinscDate(result.getDate("start_reinsc_date"));
-                inscriptionPeriod.setEndInscDate(result.getDate("end_insc_date"));
-                inscriptionPeriod.setEndReinscDate(result.getDate("end_reinsc_date"));
-
+				InscriptionPeriod inscriptionPeriod = new InscriptionPeriod();
+				inscriptionPeriod.setId(result.getInt("id"));
+				inscriptionPeriod.setStartInscDate(result.getDate("start_insc_date"));
+				inscriptionPeriod.setStartReinscDate(result.getDate("start_reinsc_date"));
+				inscriptionPeriod.setEndInscDate(result.getDate("end_insc_date"));
+				inscriptionPeriod.setEndReinscDate(result.getDate("end_reinsc_date"));
 
 				list.add(inscriptionPeriod);
 			}
@@ -100,7 +102,7 @@ public class InscriptionPeriodDAO extends DAO implements DAOInterface {
 	public int countAll() {
 		ResultSet result;
 		try {
-			result = statement.executeQuery("SELECT count(id) FROM inscription_period;");
+			result = statement.executeQuery("SELECT count(id) FROM biblio_insc_period;");
 			if (result.next()) {
 				return result.getInt("count(id)");
 			}
@@ -112,7 +114,7 @@ public class InscriptionPeriodDAO extends DAO implements DAOInterface {
 
 	public InscriptionPeriod GetLastPeriode(){
 		try {
-			ResultSet result = statement.executeQuery("SELECT * FROM inscription_period ORDER BY id DESC LIMIT 1;");
+			ResultSet result = statement.executeQuery("SELECT * FROM biblio_insc_period ORDER BY id DESC LIMIT 1;");
 			;
 			if (result.next()) {
 				InscriptionPeriod ip = new InscriptionPeriod();
@@ -127,5 +129,4 @@ public class InscriptionPeriodDAO extends DAO implements DAOInterface {
 			e.printStackTrace();
 		}
 		return null;
-	}
-}
+}}

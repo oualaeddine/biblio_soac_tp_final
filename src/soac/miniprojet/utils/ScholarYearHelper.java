@@ -2,7 +2,6 @@ package soac.miniprojet.utils;
 
 
 import soac.miniprojet.model.beans.InscriptionPeriod;
-import soac.miniprojet.model.dao.daos.InscriptionPeriodDAO;
 
 import java.util.Date;
 
