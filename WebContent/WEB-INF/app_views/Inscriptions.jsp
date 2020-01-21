@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-
+<%String role="user";%>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -23,11 +23,13 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                <%if(role=="admin"){%>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="Dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="Users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
+                <%}%>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="Students"><i class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="Inscriptions"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="Reinscriptions"><i class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="Users"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
@@ -63,21 +65,33 @@
                                 <form method="post">
                                     <div class="form-group">
                                         <div class="form-row">
-                                            <div class="col"><label>Nom :</label><input class="form-control" type="text" required=""></div>
-                                            <div class="col"><label>Prenom :</label><input class="form-control" type="text" required=""></div>
+                                            <div class="col"><label>Nom :</label><input class="form-control" type="text" required></div>
+                                            <div class="col"><label>Prenom :</label><input class="form-control" type="text" required></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-row">
-                                            <div class="col"><label>date de naissance:</label><input class="form-control" type="date" required=""></div>
-                                            <div class="col"><label>Immatriculation BAC :</label><input class="form-control" type="text"></div>
+                                            <div class="col"><label>date de naissance:</label><input class="form-control" type="date" required></div>
+                                            <div class="col"><label>Immatriculation BAC :</label><input class="form-control" type="text" required></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-row">
-                                            <div class="col"><label>Nom :</label><select class="form-control"><optgroup label="This is a group"><option value="L1" selected="">L1</option><option value="L2">L2</option><option value="L3">L3</option><option value="M1">M1</option><option value="">M2</option></optgroup></select></div>
+                                            <div class="col"><label>Année d'inscription : </label>
+                                                <select class="form-control" required>
+
+                                                        <option selected disabled value="">--Selectionner l'année--</option>
+                                                        <option value="L1">L1</option>
+                                                        <option value="L2">L2</option>
+                                                        <option value="L3">L3</option>
+                                                        <option value="M1">M1</option>
+                                                        <option value="M2">M2</option>
+
+                                                </select>
+                                            </div>
                                         </div>
-                                    </div><button class="btn btn-success float-right" type="button" style="font-size: 25px;"><i class="fa fa-plus" style="font-size: 25px;"></i>&nbsp;Inscrire</button></form>
+                                    </div>
+                                    <button class="btn btn-success float-right" type="submit" style="font-size: 25px;"><i class="fa fa-plus" style="font-size: 25px;"></i>&nbsp;Inscrire</button></form>
                             </div>
                         </div>
                     </div>

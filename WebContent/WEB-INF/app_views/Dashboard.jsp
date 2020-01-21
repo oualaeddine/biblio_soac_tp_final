@@ -1,7 +1,9 @@
+<%@ page import="soac.miniprojet.model.beans.ScholarYear" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+         pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
+<%String role="user";%>
 
 <head>
     <meta charset="utf-8">
@@ -23,11 +25,13 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                <%if(role=="admin"){%>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="Dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="Users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
+                <%}%>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="Students"><i class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="Inscriptions"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link" href="Reinscriptions"><i class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="Users"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
         </div>
@@ -43,7 +47,9 @@
                                         class="dropdown-menu shadow dropdown-menu-right animated--grow-in" role="menu"><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
                                     <a
                                             class="dropdown-item" role="presentation" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
+                                    <div class="dropdown-divider">
+
+                                    </div><a class="dropdown-item" role="presentation" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
                             </div>
                         </li>
                     </ul>
@@ -56,12 +62,21 @@
                 <div class="row">
                     <div class="col-lg-7 col-xl-6">
                         <div class="card shadow mb-4">
-                            <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header d-sm-flex justify-content-between align-items-center">
                                 <h6 class="text-primary font-weight-bold m-0">Année scolaire</h6>
-                                <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
-                                         role="menu"><a class="dropdown-item text-primary" role="presentation" href="#">Modifier</a><a class="dropdown-item text-danger" role="presentation" href="#">Terminer maintenant</a><a class="dropdown-item text-success" role="presentation"
-                                                                                                                                                                                                                                href="#">Demarrer une nouvelle année scolaire</a></div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary">Action</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#add_year">Demarrer une nouvelle periode</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit_year">Modifier la periode en cours</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#delete_year">Fermer la periode en cours</a>
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -76,10 +91,19 @@
                         <div class="card shadow mb-4">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h6 class="text-primary font-weight-bold m-0">Periode d'inscriptions</h6>
-                                <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                    <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
-                                         role="menu"><a class="dropdown-item text-primary" role="presentation" href="#">Modifier</a><a class="dropdown-item text-danger" role="presentation" href="#">Terminer maintenant</a><a class="dropdown-item text-success" role="presentation"
-                                                                                                                                                                                                                                href="#">Ouvrir la periode d'inscriptions pour l'année en cours</a></div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" >Action</button>
+                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#add_periode">Demarrer une nouvelle periode</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#edit-periode">Modifier la periode en cours</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" data-toggle="modal" data-target="#delete_periode">Fermer la periode en cours</a>
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -108,6 +132,182 @@
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="assets/js/theme.js"></script>
+
+<!-- Add periode Modal -->
+<div class="modal fade" id="add_periode" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Ouvrire une nouvelle periode</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="action" value="add_periode">
+                    <div class="form-group">
+                        <label >Date de debut :</label>
+                        <input type="date" class="form-control date-picker" name="start" placeholder="Date début" required>
+                    </div>
+                    <div class="form-group">
+                        <label >Date de fin</label>
+                        <input type="date" class="form-control" name="end" placeholder="Date fin" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" value="add_periode" class="btn btn-success">créer</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit periode Modal -->
+<div class="modal fade" id="edit-periode" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modifier la periode en cours</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="action" value="edit_periode">
+                    <div class="form-group">
+                        <label >Date de debut :</label>
+                        <input type="date" class="form-control" name="start" placeholder="Nouvelle date" value="" required >
+                    </div>
+                    <div class="form-group">
+                        <label >Date de fin</label>
+                        <input type="date" class="form-control" name="end" placeholder="Nouvelle date" value="" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" value="edit_periode" class="btn btn-success">Modifier</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Delete periode Modal -->
+<div class="modal fade" id="delete_periode" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Fermer la periode en cours </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Etes vous sure de fermer l'année en cours ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                <form>
+                    <input type="hidden" name="action" value="delete_periode">
+                    <button type="submit" class="btn btn-primary">Oui</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add year Modal -->
+<div class="modal fade" id="add_year" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" >Ouvrire une nouvelle année</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="action" value="add_year">
+                    <div class="form-group">
+                        <label >Date de debut :</label>
+                        <input type="date" class="form-control date-picker" name="start" placeholder="Date début" required>
+                    </div>
+                    <div class="form-group">
+                        <label >Date de fin</label>
+                        <input type="date" class="form-control" name="end" placeholder="Date fin" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-success">créer</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Edit year Modal -->
+<div class="modal fade" id="edit_year" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel1">Modifier l'année en cours</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="action" value="edit_year">
+                    <div class="form-group">
+                        <label >Date de debut :</label>
+                        <input type="date" class="form-control" name="start" placeholder="Nouvelle date" value="" required >
+                    </div>
+                    <div class="form-group">
+                        <label >Date de fin</label>
+                        <input type="date" class="form-control" name="end" placeholder="Nouvelle date" value="" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fermer</button>
+                        <button type="submit"  class="btn btn-success">Modifier</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Delete year Modal -->
+<div class="modal fade" id="delete_year" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Fermer l'année en cours </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Etes vous sure de fermer l'année en cours ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                <form>
+                    <input type="hidden" name="action" value="delete_year">
+                    <button type="submit" class="btn btn-primary">Oui</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>

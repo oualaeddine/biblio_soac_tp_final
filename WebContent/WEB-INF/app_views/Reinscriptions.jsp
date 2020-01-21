@@ -10,6 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
+<%String role="user";%>
 
 <head>
     <meta charset="utf-8">
@@ -32,16 +33,13 @@
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item" role="presentation"><a class="nav-link" href="Dashboard"><i
-                        class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="Students"><i
-                        class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="Inscriptions"><i
-                        class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="Reinscriptions"><i
-                        class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="Users"><i
-                        class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
+                <%if(role=="admin"){%>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="Dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="Users"><i class="fas fa-tachometer-alt"></i><span>Gerer les employée</span></a></li>
+                <%}%>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="Students"><i class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="Inscriptions"><i class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link" href="Reinscriptions"><i class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
             </ul>
             <div class="text-center d-none d-md-inline">
                 <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
@@ -92,9 +90,7 @@
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h6 class="text-primary font-weight-bold m-0">Liste des etudiants</h6>
                                 <div class="dropdown no-arrow">
-                                    <button class="btn btn-link btn-sm dropdown-toggle" data-toggle="dropdown"
-                                            aria-expanded="false" type="button"><i
-                                            class="fas fa-ellipsis-v text-gray-400"></i></button>
+
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
                                          role="menu"></div>
                                 </div>
@@ -161,13 +157,13 @@
 
                                                                     <div class="form-group">
                                                                         <label for="disabledTextInput">Niveau en cours</label>
-                                                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="<% %>niveau a retourner">
+                                                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="<% %>niveau a retourner" disabled>
                                                                     </div>
 
                                                                     <div class="form-group">
                                                                         <label for="niveau">Niveau : </label>
-                                                                        <select id="niveau" name="niveau" class="form-control form-control-lg" >
-                                                                            <option>--Selectionner--</option>
+                                                                        <select id="niveau" name="niveau" class="form-control form-control-lg" required>
+                                                                            <option selected disabled value="">--Selectionner--</option>
                                                                             <option value="L1">L1</option>
                                                                             <option value="L2">L2</option>
                                                                             <option value="L3">L3</option>
