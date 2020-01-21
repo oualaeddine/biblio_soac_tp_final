@@ -109,4 +109,23 @@ public class InscriptionPeriodDAO extends DAO implements DAOInterface {
 		}
 		return 0;
 	}
+
+	public InscriptionPeriod GetLastPeriode(){
+		try {
+			ResultSet result = statement.executeQuery("SELECT * FROM inscription_period ORDER BY id DESC LIMIT 1;");
+			;
+			if (result.next()) {
+				InscriptionPeriod ip = new InscriptionPeriod();
+				ip.setId(result.getInt("id"));
+				ip.setStartInscDate(result.getDate("start_insc_date"));
+				ip.setEndInscDate(result.getDate("end_insc_date"));
+				ip.setStartReinscDate(result.getDate("start_reinsc_date"));
+				ip.setEndReinscDate(result.getDate("end_reinsc_date"));
+				return ip;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

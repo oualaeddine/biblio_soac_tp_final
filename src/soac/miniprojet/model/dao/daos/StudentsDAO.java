@@ -2,6 +2,7 @@ package soac.miniprojet.model.dao.daos;
 // Generated 7 janv. 2020 11:56:55 by Hibernate Tools 5.4.7.Final
 
 import soac.miniprojet.model.beans.Students;
+import soac.miniprojet.model.beans.StudentsBiblioInsc;
 import soac.miniprojet.model.dao.DAO;
 import soac.miniprojet.model.dao.DAOInterface;
 
@@ -109,5 +110,22 @@ public class StudentsDAO extends DAO implements DAOInterface {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+
+	public boolean Reinscrire(StudentsBiblioInsc studentInscription) {
+		try {
+			statement.execute("INSERT INTO student_inscription (student_id, insc_period_id, " +
+					"level, insc_date)" +
+					"VALUES(" +
+					studentInscription.getStudent().getId() + "," +
+					studentInscription.getInscPeriod().getId() + "," +
+					"now()," +
+					");");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
