@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
@@ -30,7 +31,19 @@ public class InscriptionsServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Inscriptions.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") != null) {
+
+
+			if (request.getAttribute("error") == null)
+				request.setAttribute("error", false);
+
+			if (!(boolean) request.getAttribute("error"))
+				request.setAttribute("error", false);
+
+			this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Inscriptions.jsp").forward(request, response);
+		} else response.sendRedirect("/Login");
+
     }
 
 

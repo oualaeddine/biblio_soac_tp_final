@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedList;
@@ -34,10 +35,25 @@ public class StudentsServlet extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        LinkedList<Students> students = new StudentsApi().getAll();
-        request.setAttribute("students", students);
-        this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Students.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") != null) {
+
+
+            if (request.getAttribute("error") == null)
+                request.setAttribute("error", false);
+
+            if (!(boolean) request.getAttribute("error"))
+                request.setAttribute("error", false);
+
+            LinkedList<Students> students = new StudentsApi().getAll();
+            request.setAttribute("students", students);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Students.jsp").forward(request, response);
+
+        } else response.sendRedirect("/Login");
+
+
+
+
     }
 
 

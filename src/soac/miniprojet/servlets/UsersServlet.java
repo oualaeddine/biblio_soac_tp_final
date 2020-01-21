@@ -3,13 +3,16 @@ package soac.miniprojet.servlets;
 
 
 import soac.miniprojet.api.EmployeesApi;
+import soac.miniprojet.api.StudentsApi;
 import soac.miniprojet.model.beans.Employees;
+import soac.miniprojet.model.beans.Students;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -32,9 +35,23 @@ public class UsersServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LinkedList<Employees> users = new EmployeesApi().getAll();
-		request.setAttribute("users",users);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Users.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") != null) {
+
+
+			if (request.getAttribute("error") == null)
+				request.setAttribute("error", false);
+
+			if (!(boolean) request.getAttribute("error"))
+				request.setAttribute("error", false);
+
+			LinkedList<Employees> users = new EmployeesApi().getAll();
+			request.setAttribute("users",users);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Users.jsp").forward(request, response);
+
+		} else response.sendRedirect("/Login");
+
+
 	}
 
 	/**
