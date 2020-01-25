@@ -11,12 +11,13 @@ public class ScholarYearHelper {
     public static boolean isInscPeriodOpen() {
         InscriptionPeriodDAO periodDAO = new InscriptionPeriodDAO();
         InscriptionPeriod lp = periodDAO.GetLastPeriode();
-        return new Date().after(lp.getStartInscDate()) && new Date().before(lp.getEndInscDate());
+        
+        return lp!=null && new Date().after(lp.getStartInscDate()) && new Date().before(lp.getEndInscDate());
     }
 
     public static boolean isReInscPeriodOpen() {
         InscriptionPeriodDAO periodDAO = new InscriptionPeriodDAO();
         InscriptionPeriod lp = periodDAO.GetLastPeriode();
-        return  new Date().after(lp.getStartReinscDate()) && new Date().before(lp.getEndReinscDate());
+        return  lp!=null && new Date().after(lp.getStartReinscDate()) && new Date().before(lp.getEndReinscDate());
     }
 }

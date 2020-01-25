@@ -38,7 +38,7 @@ public class StudentsApi {
 
 
     public boolean add(Students student) {
-        if (ScholarYearHelper.isInscPeriodOpen())
+      if (ScholarYearHelper.isInscPeriodOpen())
             return dao.add(student);
         else
             return false;
@@ -59,7 +59,7 @@ public class StudentsApi {
     public boolean Reinscrire(StudentsBiblioInsc studentInscription) {
         if (ScholarYearHelper.isReInscPeriodOpen())
         return dao.Reinscrire(studentInscription);
-        else return false;
+       else return false;
     }
 
 }

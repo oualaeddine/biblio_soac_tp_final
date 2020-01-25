@@ -12,6 +12,11 @@ public class StudentsBiblioInscAPI  {
 
     StudentsBiblioInscDAO dao;
 
+    public StudentsBiblioInscAPI() {
+    	this.dao= new StudentsBiblioInscDAO();
+    }
+   
+    
 
     public Object getById(int id) {
 

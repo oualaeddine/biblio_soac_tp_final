@@ -8,6 +8,7 @@ import soac.miniprojet.model.dao.DAOInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.LinkedList;
 
 
@@ -49,10 +50,9 @@ public class StudentsDAO extends DAO implements DAOInterface {
 			statement.execute("UPDATE Students SET " +
 					"nom = '" + student.getNom() + "'," +
 					"prenom = '" + student.getPrenom() + "'," +
-					"date_naiss = '" + student.getDateNaiss() + "'," +
+					"date_naiss = '" +new SimpleDateFormat("yyyy-MM-dd").format(student.getDateNaiss() ) + "'," +
 					"sexe = '" + student.getSexe() + "'," +
-					"num_bac = '" + student.getNumBac() + "'," +
-					"date_insc = '" + student.getDateInsc() + "'," +
+					"num_bac = '" + student.getNumBac() + "'" +
 
 					" WHERE Students.id=" + student.getId() + ";");
 			return true;
@@ -70,10 +70,10 @@ public class StudentsDAO extends DAO implements DAOInterface {
 					"VALUES(" +
 					"'" + student.getNom() + "'," +
 					"'" + student.getPrenom() + "'," +
-					"'" + student.getDateNaiss() + "'," +
+					"'" + new SimpleDateFormat("yyyy-MM-dd").format(student.getDateNaiss() )+ "'," +
 					"'" + student.getSexe() + "'," +
 					"'" + student.getNumBac() + "'," +
-					"now()" +
+					" now() " +
 					");");
 			return true;
 		} catch (SQLException e) {
@@ -119,12 +119,9 @@ public class StudentsDAO extends DAO implements DAOInterface {
 
 	public boolean Reinscrire(StudentsBiblioInsc studentInscription) {
 		try {
-			statement.execute("INSERT INTO students_biblio_insc (student_id, biblio_insc_period_id , date_insc)" +
-					"VALUES(" +
-					studentInscription.getStudent().getId() + "," +
-					studentInscription.getInscPeriod().getId() + "," +
-					"now()," +
-					");");
+			statement.execute("insert into students_biblio_insc (student_id, biblio_insc_period_id) value "
+					+ "("+studentInscription.getStudent().getId()+
+					", (SELECT id from biblio_insc_period ORDER BY id DESC LIMIT 1))");
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

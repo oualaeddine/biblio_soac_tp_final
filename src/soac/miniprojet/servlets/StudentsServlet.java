@@ -1,6 +1,6 @@
 package soac.miniprojet.servlets;
 
-
+import soac.miniprojet.api.EmployeesApi;
 import soac.miniprojet.api.StudentsApi;
 import soac.miniprojet.model.beans.Employees;
 import soac.miniprojet.model.beans.Students;
@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -20,98 +22,97 @@ import java.util.LinkedList;
  */
 @WebServlet("/students")
 public class StudentsServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private final StudentsApi api;
+	private static final long serialVersionUID = 1L;
+	private final StudentsApi api;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public StudentsServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-       this.api= new StudentsApi();
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public StudentsServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+		this.api = new StudentsApi();
+	}
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        if (session.getAttribute("user") != null) {
-            Employees user = (Employees)session.getAttribute("user");
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") != null) {
+			Employees user = (Employees) session.getAttribute("user");
 
-            request.setAttribute("user",user.getNom()+" "+user.getPrenom());
-            request.setAttribute("role",user.getRole());
-            System.out.println(user.getRole());
+			request.setAttribute("user", user.getNom() + " " + user.getPrenom());
+			request.setAttribute("role", user.getRole());
+			System.out.println(user.getRole());
 
-            LinkedList<Students> students = new StudentsApi().getAll();
-            request.setAttribute("students", students);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Students.jsp").forward(request, response);
+			LinkedList<Students> students = new StudentsApi().getAll();
+			request.setAttribute("students", students);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Students.jsp").forward(request, response);
 
-        } else response.sendRedirect(request.getContextPath() + "/login");
+		} else
+			response.sendRedirect(request.getContextPath() + "/login");
 
+	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") != null) {
+			Employees user = (Employees) session.getAttribute("user");
 
+			request.setAttribute("user", user.getNom() + " " + user.getPrenom());
+			request.setAttribute("role", user.getRole());
 
-    }
+			String action = request.getParameter("action");
+			String _id = request.getParameter("id");
+			int id = Integer.parseInt(_id);
 
+			switch (action) {
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        if (session.getAttribute("user") != null) {
-            Employees user = (Employees)session.getAttribute("user");
+			case "edit": {
 
-            request.setAttribute("user",user.getNom()+" "+user.getPrenom());
-            request.setAttribute("role",user.getRole());
+				String nom = request.getParameter("nom");
+				String prenom = request.getParameter("prenom");
+				String date_naiss = request.getParameter("date_naiss");
+				String sexe = request.getParameter("sexe");
+				String num_bac = request.getParameter("num_bac");
+				Students s = new Students();
 
-            String _id = request.getParameter("id");
-            int id = Integer.parseInt(_id);
-            String nom = request.getParameter("nom");
-            String  prenom = request.getParameter("prenom");
-            String  date_naiss = request.getParameter("date_naiss");
-            String  sexe = request.getParameter("sexe");
-            String  num_bac = request.getParameter("num_bac");
+				s.setId(id);
+				s.setNom(nom);
+				s.setPrenom(prenom);
+				try {
+					s.setDateNaiss(new SimpleDateFormat("yyyy-MM-dd").parse(date_naiss));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				s.setSexe(sexe);
+				s.setNumBac(num_bac);
 
-            Students s = new Students();
-            s.setId(id);
-            s.setNom(nom);
-            s.setPrenom(prenom);
-            s.setDateNaiss(new Date(date_naiss));
-            s.setSexe(sexe);
-            s.setNumBac(num_bac);
-            s.setDateInsc(new Date());
-            api.update(s);
+				StudentsApi api = new StudentsApi();
+				api.update(s);
 
-            doGet(request, response);
+				break;
+			}
 
-        } else response.sendRedirect(request.getContextPath() + "/login");
+			case "delete": {
+				api.deleteById(id);
+				break;
 
+			}
+			}
 
+			doGet(request, response);
 
-
-    }
-
-
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        if (session.getAttribute("user") != null) {
-            Employees user = (Employees)session.getAttribute("user");
-
-            req.setAttribute("user",user.getNom()+" "+user.getPrenom());
-            req.setAttribute("role",user.getRole());
-
-            String id = req.getParameter("id");
-            api.deleteById(Integer.parseInt(id));
-            doGet(req,resp);
-
-        } else resp.sendRedirect(req.getContextPath() + "/login");
-
-
-
-    }
+		} else
+			response.sendRedirect(request.getContextPath() + "/login");
+	}
 }

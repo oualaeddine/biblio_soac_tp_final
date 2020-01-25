@@ -11,7 +11,7 @@ public class StudentsBiblioInsc implements Serializable {
 
 	private Students student;
 	private Date dateInsc;
-	private StudentsBiblioInsc inscPeriod;
+	private InscriptionPeriod inscPeriod;
 	private int id;
 
 	public StudentsBiblioInsc() {
@@ -33,11 +33,11 @@ public class StudentsBiblioInsc implements Serializable {
 		this.dateInsc = dateInsc;
 	}
 
-    public StudentsBiblioInsc getInscPeriod() {
+    public InscriptionPeriod getInscPeriod() {
         return inscPeriod;
     }
 
-    public void setInscPeriod(StudentsBiblioInsc inscPeriod) {
+    public void setInscPeriod(InscriptionPeriod inscPeriod) {
         this.inscPeriod = inscPeriod;
     }
 

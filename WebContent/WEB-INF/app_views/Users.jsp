@@ -93,9 +93,7 @@
                                                 <input type="text" name="prenom" class="form-control" required>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="date" name="date_naiss" class="form-control" required>
-                                        </div>
+                                      
                                         <div class="form-group">
                                             <label>Poste : </label>
                                             <select name="role" class="form-control form-control-lg" required>

@@ -1,9 +1,11 @@
+<%@page import="soac.miniprojet.model.dao.daos.InscriptionPeriodDAO"%>
+<%@page import="soac.miniprojet.model.dao.daos.InscriptionPeriodDAO"%>
+<%@page import="soac.miniprojet.utils.ScholarYearHelper"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
-<%String role = (String) request.getAttribute("role");%>
-
+<% String role = (String) request.getAttribute("role");%>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -123,14 +125,18 @@
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu">
+                                    
+                                    
                                         <a class="dropdown-item" data-toggle="modal" data-target="#add_periode">Demarrer
                                             une nouvelle periode</a>
                                         <div class="dropdown-divider"></div>
+                                        <% if(ScholarYearHelper.isInscPeriodOpen()){ %>
                                         <a class="dropdown-item" data-toggle="modal" data-target="#edit-periode">Modifier
                                             la periode en cours</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" data-toggle="modal" data-target="#delete_periode">Fermer
                                             la periode en cours</a>
+                                            <%} %>
 
                                     </div>
                                 </div>
@@ -140,12 +146,12 @@
                                     <div class="col-6">
                                         <label class="col-form-label">Debut: </label>
                                         <input class="form-control" type="date"
-                                               value="<%= request.getAttribute("start_period")%>" readonly/>
+                                               value="<%= request.getAttribute("start_period")==null ?"": request.getAttribute("start_period") %>" readonly/>
                                     </div>
                                     <div class="col-6">
                                         <label>Fin :</label>
                                         <input class="form-control" type="date"
-                                               value="<%= request.getAttribute("end_period")%>" readonly/>
+                                               value="<%= request.getAttribute("end_period")==null ?"":request.getAttribute("end_period")%>" readonly/>
                                     </div>
                                 </div>
                             </div>
@@ -215,16 +221,16 @@
             <div class="modal-body">
                 <form method="post">
                     <input type="hidden" name="action" value="edit_periode">
-                    <input type="hidden" name="id" value="<%= request.getAttribute("period_id")%>">
+                    <input type="hidden" name="id" value="<%= request.getAttribute("period_id")==null ?"": request.getAttribute("period_id")%>">
                     <div class="form-group">
                         <label>Date de debut :</label>
-                        <input type="date" class="form-control" value="<%= request.getAttribute("start_period")%>"
+                        <input type="date" class="form-control" value="<%= request.getAttribute("start_period") ==null ?"": request.getAttribute("start_period")%>"
                                name="start" placeholder="Nouvelle date"
                                required>
                     </div>
                     <div class="form-group">
                         <label>Date de fin</label>
-                        <input type="date" class="form-control" value="<%= request.getAttribute("end_period")%>"
+                        <input type="date" class="form-control" value="<%= request.getAttribute("end_period") ==null ?"": request.getAttribute("end_period") %>"
                                name="end" placeholder="Nouvelle date"
                                required>
                     </div>

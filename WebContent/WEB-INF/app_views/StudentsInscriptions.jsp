@@ -1,3 +1,4 @@
+<%@page import="soac.miniprojet.model.beans.StudentsBiblioInsc"%>
 <%@ page import="soac.miniprojet.model.dao.daos.StudentsDAO" %>
 <%@ page import="java.util.LinkedList" %>
 <%@ page import="soac.miniprojet.model.beans.Students" %><%--
@@ -31,7 +32,8 @@
             <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
                 <div class="sidebar-brand-text mx-3"><span>Biblio</span></div>
             </a>
-            <hr class="sidebar-divider my-0">            <ul class="nav navbar-nav text-light" id="accordionSidebar">                <%if (role.equals("RESP_BIBLIO")) {%>
+            <hr class="sidebar-divider my-0">            <ul class="nav navbar-nav text-light" id="accordionSidebar">   
+                         <%if (role.equals("RESP_BIBLIO")) {%>
                 <li class="nav-item" role="presentation"><a class="nav-link"
                                                             href="<%=request.getContextPath() %>/dashboard"><i
                         class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
@@ -76,14 +78,14 @@
 
             <div class="container-fluid">
                 <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                    <h3 class="text-dark mb-0">Reinscriptions</h3>
+                    <h3 class="text-dark mb-0">Inscriptions</h3>
 
                 </div>
                 <div class="row">
                     <div class="col-lg-7 col-xl-12">
                         <div class="card shadow mb-4">
                             <div class="card-header d-flex justify-content-between align-items-center">
-                                <h6 class="text-primary font-weight-bold m-0">Liste des etudiants</h6>
+                                <h6 class="text-primary font-weight-bold m-0">Liste des Inscriptions</h6>
                                 <div class="dropdown no-arrow">
 
                                     <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in"
@@ -95,85 +97,28 @@
                                     <table class="table table-striped table-hover table-sm">
                                         <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Nom</th>
-                                            <th>Prénom</th>
-                                            <th>Date de naissance</th>
-                                            <th>sexe</th>
-                                            <th>n° BAC</th>
+                                            <th>Etudiant</th>
+                                            <th>Periode</th>
                                             <th>Date d'inscription</th>
-                                            <th>Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <%
-                                            LinkedList<Students> studs = (LinkedList<Students>) request.getAttribute("students");
-                                            for (Students student : studs) {
+                                            LinkedList<StudentsBiblioInsc> studs = (LinkedList<StudentsBiblioInsc>) request.getAttribute("inscriptions");
+                                         
+                                        for (StudentsBiblioInsc insc : studs) {
                                         %>
                                         <tr>
-                                            <td><%= student.getId()%>
-                                            </td>
-                                            <td><%= student.getNom()%>
-                                            </td>
-                                            <td><%= student.getPrenom()%>
+                                            <td>
+                                            <%= insc.getStudent().getNom() %>   <%= insc.getStudent().getPrenom()%>
                                             </td>
                                             <td>
-                                                <%= student.getDateNaiss()%>
+                                                <%= insc.getInscPeriod().getStartInscDate() %>
                                             </td>
                                             <td>
-                                                <%= student.getSexe()%>
+                                                <%= insc.getDateInsc()%>
                                             </td>
-                                            <td>
-                                                <%= student.getNumBac()%>
-                                            </td>
-                                            <td>
-                                                <%= student.getDateInsc()%>
-                                            </td>
-                                            <td class="text-center" style="padding-top: 0px;">
-                                                <button type="button" class="btn btn-success" data-toggle="modal"
-                                                        data-target="#staticBackdrop"><i class="fa fa-recycle"></i>
-                                                    Réinscrire
-                                                </button>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade " id="staticBackdrop" data-backdrop="static"
-                                                     tabindex="-1" role="dialog"
-                                                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                    <form method = "post">
-                                                        <input type="hidden" name="id" value="<%= student.getId()%>">
-
-                                                        <div class="modal-dialog" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="staticBackdropLabel">
-                                                                        Réinscrire un etudiant</h5>
-                                                                    <button type="button" class="close"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-
-
-
-
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-danger"
-                                                                                data-dismiss="modal">Annuler
-                                                                        </button>
-                                                                        <button type="submit" class="btn btn-success"><i
-                                                                                class="fa fa-dot-circle-o"></i>
-                                                                            Réinscrire
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-
-                                                </div>
-
-                                            </td>
+                                            
                                         </tr>
                                         <%
                                             }

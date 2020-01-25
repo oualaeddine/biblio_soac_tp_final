@@ -60,8 +60,12 @@ public class ReinscriptionsServlet extends HttpServlet {
         String _id = request.getParameter("id");
         int id = Integer.parseInt(_id);
         StudentsBiblioInsc fg = new StudentsBiblioInsc();
-        fg.setId(id);
+        Students s = new Students();
+        s.setId(id);
+        fg.setStudent(s);
 
         new StudentsApi().Reinscrire(fg);
+        
+        doGet(request,response);
     }
 }

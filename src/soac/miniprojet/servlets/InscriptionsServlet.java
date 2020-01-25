@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -61,20 +63,23 @@ public class InscriptionsServlet extends HttpServlet {
             String date_naiss = request.getParameter("date_naiss");
             String sexe = request.getParameter("sexe");
             String num_bac = request.getParameter("num_bac");
-
             Students s = new Students();
 
             s.setNom(nom);
             s.setPrenom(prenom);
-            s.setDateNaiss(new Date(date_naiss));
+            try {
+				s.setDateNaiss(new SimpleDateFormat("yyyy-MM-dd").parse(date_naiss));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             s.setSexe(sexe);
             s.setNumBac(num_bac);
-            s.setDateInsc(new Date());
 
             StudentsApi api = new StudentsApi();
             api.add(s);
 
-            doGet(request, response);
+            response.sendRedirect(request.getContextPath() + "/students");
 
         } else response.sendRedirect(request.getContextPath() + "/login");
 

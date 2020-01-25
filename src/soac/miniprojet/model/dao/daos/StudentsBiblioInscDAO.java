@@ -1,6 +1,7 @@
 package soac.miniprojet.model.dao.daos;
 // Generated 7 janv. 2020 11:56:55 by Hibernate Tools 5.4.7.Final
 
+import soac.miniprojet.model.beans.InscriptionPeriod;
 import soac.miniprojet.model.beans.Students;
 import soac.miniprojet.model.beans.StudentsBiblioInsc;
 import soac.miniprojet.model.dao.DAO;
@@ -15,6 +16,8 @@ import java.util.LinkedList;
  */
 public class StudentsBiblioInscDAO extends DAO implements DAOInterface {
 
+	
+	
     @Override
     public Object getById(int id) {
 
@@ -52,11 +55,29 @@ public class StudentsBiblioInscDAO extends DAO implements DAOInterface {
         LinkedList<StudentsBiblioInsc> list = new LinkedList<>();
         ResultSet result;
         try {
-            result = statement.executeQuery("SELECT * FROM students_biblio_insc;");
+            result = statement.executeQuery("SELECT * FROM students_biblio_insc, students, biblio_insc_period where student_id=students.id and biblio_insc_period_id=biblio_insc_period.id;");
             while (result.next()) {
 				StudentsBiblioInsc studentsBiblioInsc = new StudentsBiblioInsc();
-				studentsBiblioInsc.setDateInsc(result.getDate("id"));
-				studentsBiblioInsc.setStudent((Students) new StudentsDAO().getById(result.getInt("student_id")));
+				studentsBiblioInsc.setDateInsc(result.getDate("date_insc"));
+
+
+                Students student = new Students();
+                student.setId(result.getInt("id"));
+                student.setNom(result.getString("nom"));
+                student.setPrenom(result.getString("prenom"));
+                student.setDateNaiss(result.getDate("date_naiss"));
+                student.setSexe(result.getString("sexe"));
+                student.setNumBac(result.getString("num_bac"));
+                student.setDateInsc(result.getDate("date_insc"));
+                studentsBiblioInsc.setStudent(student);
+
+
+                InscriptionPeriod inscriptionPeriod = new InscriptionPeriod();
+                inscriptionPeriod.setId(result.getInt("id"));
+                inscriptionPeriod.setEndInscDate(result.getDate("end_insc_date"));
+                inscriptionPeriod.setStartInscDate(result.getDate("start_insc_date"));
+                studentsBiblioInsc.setInscPeriod(inscriptionPeriod);
+
 				list.add(studentsBiblioInsc);
             }
         } catch (SQLException e) {

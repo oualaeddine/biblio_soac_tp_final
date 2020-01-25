@@ -52,9 +52,12 @@ public class DashboardServlet extends HttpServlet {
             request.setAttribute("start_year", user.getRole());
             request.setAttribute("end_year", user.getRole());
 
-            request.setAttribute("start_period", new SimpleDateFormat("yyyy-MM-dd").format(period.getStartInscDate()));
-            request.setAttribute("end_period", new SimpleDateFormat("yyyy-MM-dd").format(period.getEndInscDate()));
-            request.setAttribute("period_id", period.getId());
+            if (period != null) {
+            	 request.setAttribute("start_period", new SimpleDateFormat("yyyy-MM-dd").format(period.getStartInscDate()));
+                 request.setAttribute("end_period", new SimpleDateFormat("yyyy-MM-dd").format(period.getEndInscDate()));
+                 request.setAttribute("period_id", period.getId());
+            }
+           
 
             this.getServletContext().getRequestDispatcher("/WEB-INF/app_views/Dashboard.jsp").forward(request, response);
         } else response.sendRedirect(request.getContextPath() + "/login");
