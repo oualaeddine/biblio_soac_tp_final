@@ -49,6 +49,8 @@ public class AuthServlet extends HttpServlet {
         EmployeesApi employeeApi = new EmployeesApi();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        
+        
 
         System.out.println(username + " " + password);
 

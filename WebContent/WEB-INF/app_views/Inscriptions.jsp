@@ -96,22 +96,7 @@
                                                     class="form-control" type="text" required></div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="form-row">
-                                            <div class="col"><label>Année d'inscription : </label>
-                                                <select class="form-control" required>
-
-                                                    <option selected disabled value="">--Selectionner l'année--</option>
-                                                    <option value="L1">L1</option>
-                                                    <option value="L2">L2</option>
-                                                    <option value="L3">L3</option>
-                                                    <option value="M1">M1</option>
-                                                    <option value="M2">M2</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                              
                                     <button class="btn btn-success float-right" type="submit" style="font-size: 25px;">
                                         <i class="fa fa-plus" style="font-size: 25px;"></i>&nbsp;Inscrire
                                     </button>

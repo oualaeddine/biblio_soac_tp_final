@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedList;
 
 /**
@@ -54,9 +55,96 @@ public class UsersServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		doGet(request, response);
+		HttpSession session = req.getSession();
+		if (session.getAttribute("user") != null) {
+			Employees user = (Employees)session.getAttribute("user");
+
+			req.setAttribute("user",user.getNom()+" "+user.getPrenom());
+			req.setAttribute("role",user.getRole());
+
+
+            String action = req.getParameter("action");
+            switch(action) {
+            
+            case "add":{
+            	
+            	 String nom = req.getParameter("nom");
+                 String prenom = req.getParameter("prenom");
+                 String username = req.getParameter("username");
+                 String password = req.getParameter("password");
+                 String role = req.getParameter("role");
+
+
+                 Employees s = new Employees();
+
+                 s.setNom(nom);
+                 s.setPrenom(prenom);
+                 s.setUsername(username);
+                 s.setPassword(password);
+                 s.setRole(role);
+                 
+                
+
+                 EmployeesApi api = new EmployeesApi();
+                 api.add(s);
+
+     			
+     			doGet(req,resp);
+            	
+            	
+            	break;}
+            
+            case "edit":{
+            
+            	String id = req.getParameter("id");
+    			
+    			
+    			Employees s = (Employees) new EmployeesApi().getById(Integer.parseInt(id));
+    			
+    			
+    			 String nom = req.getParameter("nom");
+    	            String prenom = req.getParameter("prenom");
+    	            String username = req.getParameter("username");
+    	            String password = req.getParameter("password");
+    	            String role = req.getParameter("role");
+
+
+    	            
+
+    	            s.setNom(nom);
+    	            s.setPrenom(prenom);
+    	            s.setUsername(username);
+    	            s.setPassword(password);
+    	            s.setRole(role);
+    	            s.setId(Integer.parseInt(id));
+    	            
+    	           
+
+    	            EmployeesApi api = new EmployeesApi();
+    	            api.update(s);
+    			doGet(req,resp);
+            	
+            	break;}
+            
+            case "delete":{
+            	
+            	String id = req.getParameter("id");
+    			new EmployeesApi().deleteById(Integer.parseInt(id));
+    			System.out.println("ani f delete a"+id);
+    			doGet(req,resp);
+            	
+            	
+            	break;
+            	
+            }
+            }
+            
+           
+
+		} else resp.sendRedirect(req.getContextPath() + "/login");
+
 	}
 
 	@Override
@@ -69,9 +157,32 @@ public class UsersServlet extends HttpServlet {
 			req.setAttribute("user",user.getNom()+" "+user.getPrenom());
 			req.setAttribute("role",user.getRole());
 
-			super.doPut(req, resp);
 			String id = req.getParameter("id");
-			new EmployeesApi().getById(Integer.parseInt(id));
+			
+			
+			Employees s = (Employees) new EmployeesApi().getById(Integer.parseInt(id));
+			
+			
+			 String nom = req.getParameter("nom");
+	            String prenom = req.getParameter("prenom");
+	            String username = req.getParameter("username");
+	            String password = req.getParameter("password");
+	            String role = req.getParameter("role");
+
+
+	            
+
+	            s.setNom(nom);
+	            s.setPrenom(prenom);
+	            s.setUsername(username);
+	            s.setPassword(password);
+	            s.setRole(role);
+	            s.setId(Integer.parseInt(id));
+	            
+	           
+
+	            EmployeesApi api = new EmployeesApi();
+	            api.update(s);
 			doGet(req,resp);
 
 		} else resp.sendRedirect(req.getContextPath() + "/login");
@@ -92,7 +203,7 @@ public class UsersServlet extends HttpServlet {
 			String id = req.getParameter("id");
 			new EmployeesApi().deleteById(Integer.parseInt(id));
 
-			super.doDelete(req, resp);
+			doGet(req,resp);
 
 		} else resp.sendRedirect(req.getContextPath() + "/login");
 
