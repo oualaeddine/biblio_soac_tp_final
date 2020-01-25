@@ -88,10 +88,10 @@ public class EmployeesDAO extends DAO implements DAOInterface {
                     "prenom = '" + employe.getPrenom() + "'," +
                     "role = '" + employe.getRole() + "'," +
                     "username = '" + employe.getUsername() + "'," +
-                    "password = '" + employe.getPassword() + "'" +
+                    "password = '" + employe.getPassword() + "'," +
 
 
-                    " WHERE Employees.id=" + employe.getId() + " ;");
+                    " WHERE Employees.id=" + employe.getId() + ";");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -108,7 +108,7 @@ public class EmployeesDAO extends DAO implements DAOInterface {
                     "'" + employe.getPrenom() + "'," +
                     "'" + employe.getRole() + "'" + "," +
                     "'" + employe.getUsername() + "'," +
-                    "'" + employe.getPassword() + "'" + 
+                    "'" + employe.getPassword() + "'" + "," +
 
                     ");");
             return true;

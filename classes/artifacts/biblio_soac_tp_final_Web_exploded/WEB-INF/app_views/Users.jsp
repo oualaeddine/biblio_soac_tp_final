@@ -71,7 +71,7 @@
                     <!-- Modal -->
                     <div class="modal fade " id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
                          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <form method="post">
+                        <form method="post" action="#">
                             <input type="hidden"  name="action" value="add" >
 
                             <div class="modal-dialog" role="document">
@@ -93,16 +93,14 @@
                                                 <input type="text" name="prenom" class="form-control" required>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="date" name="date_naiss" class="form-control" required>
-                                        </div>
+                                       
                                         <div class="form-group">
                                             <label>Poste : </label>
                                             <select name="role" class="form-control form-control-lg" required>
                                                 <option selected disabled value="">--Selectionner--</option>
-                                                <option value="CHEF_DEP">Chef de Département</option>
+                                               
                                                 <option value="RESP_BIBLIO">Responsable de bibliothèque</option>
-                                                <option value="AGENT_SCOL">Agent de scolarité</option>
+                                               
                                                 <option value="AGENT_BIBLIO">Agent de bibliothèque</option>
                                             </select>
                                         </div>
@@ -195,7 +193,8 @@
                                                 <!-- Delete Modal -->
                                                 <div class="modal fade " id="delete-<%= user.getId()%>" data-backdrop="static" tabindex="-1" role="dialog"
                                                      aria-labelledby="delete-<%= user.getId()%>r" aria-hidden="true">
-                                                    <form>
+                                                    <form method = 'post'>
+                                                    
                                                         <input type="hidden"  name="action" value="delete" >
                                                         <input type="hidden"  name="id" value="<%= user.getId()%>" >
 
@@ -228,6 +227,7 @@
                                                 <div class="modal fade " id="edit-<%= user.getId()%>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                     <form method="post">
                                                         <input type="hidden"  name="action" value="edit" >
+                                                         <input type="hidden" name="_method" value="put" />
                                                         <input type="hidden"  name="id" value="<%= user.getId()%>" >
 
                                                         <div class="modal-dialog" role="document">
@@ -256,9 +256,9 @@
                                                                         <label>Poste : </label>
                                                                         <select name="role" class="form-control form-control-lg" required>
                                                                             <option selected disabled value="">--Selectionner--</option>
-                                                                            <option value="CHEF_DEP">Chef de Département</option>
+                                                                          
                                                                             <option value="RESP_BIBLIO">Responsable de bibliothèque</option>
-                                                                            <option value="AGENT_SCOL">Agent de scolarité</option>
+                                                                          
                                                                             <option value="AGENT_BIBLIO">Agent de bibliothèque</option>
                                                                         </select>
                                                                     </div>
@@ -287,7 +287,7 @@
                                                                         <button type="submit" class="btn btn-success"><i
                                                                                 class="fa fa-dot-circle-o"></i>
 
-                                                                            Ajouter
+                                                                            Modifier
                                                                         </button>
                                                                     </div>
                                                                 </div>

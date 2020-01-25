@@ -82,34 +82,21 @@
                                 <form method="post">
                                     <div class="form-group">
                                         <div class="form-row">
-                                            <div class="col"><label>Nom :</label>
-                                                <input class="form-control" type="text" name="nom" required>
-                                            </div>
-                                            <div class="col"><label>Prenom :</label>
-                                                <input class="form-control" name="prenom" type="text" required>
-                                            </div>
+                                            <div class="col"><label>Nom :</label><input class="form-control" type="text"
+                                                                                        required></div>
+                                            <div class="col"><label>Prenom :</label><input class="form-control"
+                                                                                           type="text" required></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-row">
-                                            <div class="col"><label>date de naissance:</label>
-                                                <input name="date_naiss" class="form-control" type="date" required>
-                                            </div>
-                                            <div class="col"><label>Immatriculation BAC :</label>
-                                                <input name="num_bac" class="form-control" type="text" required></div>
+                                            <div class="col"><label>date de naissance:</label><input
+                                                    class="form-control" type="date" required></div>
+                                            <div class="col"><label>Immatriculation BAC :</label><input
+                                                    class="form-control" type="text" required></div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="form-row">
-                                            <div class="col"><label>Année d'inscription : </label>
-                                                <select class="form-control" name="sexe" required>
-                                                    <option selected disabled value="">--Selectionner le sexe--</option>
-                                                    <option value="HOMME">HOMME</option>
-                                                    <option value="FEMME">FEMME</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                              
                                     <button class="btn btn-success float-right" type="submit" style="font-size: 25px;">
                                         <i class="fa fa-plus" style="font-size: 25px;"></i>&nbsp;Inscrire
                                     </button>

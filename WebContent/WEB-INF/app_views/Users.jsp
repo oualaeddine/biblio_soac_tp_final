@@ -71,7 +71,7 @@
                     <!-- Modal -->
                     <div class="modal fade " id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
                          aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <form method="post" action="#">
+                        <form method="post">
                             <input type="hidden"  name="action" value="add" >
 
                             <div class="modal-dialog" role="document">
@@ -93,12 +93,14 @@
                                                 <input type="text" name="prenom" class="form-control" required>
                                             </div>
                                         </div>
-                                       
+                                        <div class="form-group">
+                                            <input type="date" name="date_naiss" class="form-control" required>
+                                        </div>
                                         <div class="form-group">
                                             <label>Poste : </label>
                                             <select name="role" class="form-control form-control-lg" required>
                                                 <option selected disabled value="">--Selectionner--</option>
-                                               
+
                                                 <option value="RESP_BIBLIO">Responsable de bibliothèque</option>
                                                
                                                 <option value="AGENT_BIBLIO">Agent de bibliothèque</option>
