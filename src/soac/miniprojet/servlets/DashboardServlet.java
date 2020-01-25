@@ -92,7 +92,5 @@ public class DashboardServlet extends HttpServlet {
             doGet(request, response);
 
         } else response.sendRedirect(request.getContextPath() + "/login");
-
     }
-
 }
