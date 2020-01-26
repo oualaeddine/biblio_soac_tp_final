@@ -44,7 +44,7 @@
                         class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link"
                                                             href="<%=request.getContextPath() %>/inscription"><i
-                        class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
+                        class="fas fa-tachometer-alt"></i><span>Inscrire un étudiant</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link"
                                                             href="<%=request.getContextPath() %>/reinscription"><i
                         class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>  

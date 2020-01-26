@@ -40,7 +40,7 @@
                         class="fas fa-tachometer-alt"></i><span>Gestion des etudiants</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link"
                                                             href="<%=request.getContextPath() %>/inscription"><i
-                        class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
+                        class="fas fa-tachometer-alt"></i><span>Inscrire un étudiant</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link"
                                                             href="<%=request.getContextPath() %>/reinscription"><i
                         class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>  <li class="nav-item" role="presentation"><a class="nav-link"
@@ -191,7 +191,7 @@
                     <input type="hidden" name="action" value="add_periode">
                     <div class="form-group">
                         <label>Date de debut :</label>
-                        <input type="date" class="form-control date-picker" name="start" placeholder="Date début"
+                        <input type="date" min="<%= request.getAttribute("end_period") ==null ?"": request.getAttribute("end_period") %>" class="form-control date-picker" name="start" placeholder="Date début"
                                required>
                     </div>
                     <div class="form-group">
