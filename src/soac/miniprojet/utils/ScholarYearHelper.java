@@ -11,13 +11,22 @@ public class ScholarYearHelper {
     public static boolean isInscPeriodOpen() {
         InscriptionPeriodDAO periodDAO = new InscriptionPeriodDAO();
         InscriptionPeriod lp = periodDAO.GetLastPeriode();
-        
-        return lp!=null && new Date().after(lp.getStartInscDate()) && new Date().before(lp.getEndInscDate());
+        if (lp != null) {
+        	return new Date().after(lp.getStartInscDate()) && new Date().before(lp.getEndInscDate());
+        } else {
+        	return false;
+        }
     }
 
     public static boolean isReInscPeriodOpen() {
-        InscriptionPeriodDAO periodDAO = new InscriptionPeriodDAO();
+    /*    InscriptionPeriodDAO periodDAO = new InscriptionPeriodDAO();
         InscriptionPeriod lp = periodDAO.GetLastPeriode();
-        return  lp!=null && new Date().after(lp.getStartReinscDate()) && new Date().before(lp.getEndReinscDate());
+        if (lp != null) {
+        	return   new Date().after(lp.getStartReinscDate()) && new Date().before(lp.getEndReinscDate());
+        } else {
+        	return false;
+        } */
+	return  isInscPeriodOpen();
+        
     }
 }

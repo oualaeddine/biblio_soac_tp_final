@@ -49,7 +49,11 @@
                         class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link"
                                                             href="<%=request.getContextPath() %>/reinscription"><i
-                        class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>
+                        class="fas fa-tachometer-alt"></i><span>Reinscription</span></a></li>             
+                        
+                           <li class="nav-item" role="presentation"><a class="nav-link"
+                                                            href="<%=request.getContextPath() %>/inscriptions"><i
+                        class="fas fa-tachometer-alt"></i><span>Inscriptions</span></a></li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" href="<%=request.getContextPath() %>/logout">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></li>
@@ -113,7 +117,7 @@
                                             <%= insc.getStudent().getNom() %>   <%= insc.getStudent().getPrenom()%>
                                             </td>
                                             <td>
-                                                <%= insc.getInscPeriod().getStartInscDate() %>
+                                                <%= insc.getInscPeriod().getStartInscDate() %>/<%= insc.getInscPeriod().getEndInscDate() %>
                                             </td>
                                             <td>
                                                 <%= insc.getDateInsc()%>
